@@ -1,0 +1,26 @@
+참고 사항 -
+
+Terminal Command :
+    npx create-react-app --template typescript
+    npm add -D electron electron-builder
+
+
+package.json :
+
+  "main" : "electron.js 경로"
+  "homepage" : "정적데이터 경로"
+  추가
+
+  "scripts": {
+//    내입맛대로 바꿈 알아서 쓰셈
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "react-start" : "set BROWSER=none && npm start",
+//    브라우저 실행 X, 일렉트론 보면서 할꺼임
+    "electron-start" : "set ELECTRON_START_URL=http://localhost:3000 && electron",
+//    일렉트론 실행, 환경변수 지정? 필요
+    "electron-pack" : "npm build && electron-builder build -c.extraMetadata.main=build/Main.js"
+//     배포할때 사용되는 커맨드, 잘 모름
+ }
