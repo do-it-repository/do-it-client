@@ -1,12 +1,12 @@
 import React from 'react';
 import MainScreen from './screens/MainScreen';
-import SubScreen from './screens/SubScreen';
+import MatButton from './screens/MatButton';
 
 export default function App() {
   return (
     <div>
       <MainScreen />
-      <SubScreen />
+      <MatButton />
     </div>
   );
 }
