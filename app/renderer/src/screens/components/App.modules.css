@@ -1,0 +1,46 @@
+.gray-box {
+    background: gray;
+    width: 64px;
+    height: 64px;
+  }
+  
+  .input {
+    margin-bottom: 0.5rem;
+    margin-left: 0.5rem;
+  }
+  
+  .Tag {
+    display: inline-block;
+  }
+  
+  .Box {
+    height: 1.5rem;
+    font-size: 0.75rem;
+    border-radius: 0.75rem;
+    background: rgb(241, 243, 245);
+    color: rgb(12, 166, 120);
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    margin-left: 0.5rem;
+    margin-bottom: 0.5rem;
+    display: inline-flex;
+    text-decoration: none;
+    align-items: center;
+    -webkit-font-smoothing: antialiased;
+    /* 애니메이션 이름 */
+    animation-name: jaehee;
+    animation-duration: 0.1s;
+  }
+  
+  /* 키프레임 이름 = 애니메이션 이름 */
+  @keyframes jaehee {
+    0% {
+      opacity: 0.4;
+      transform: scale3d(0.6, 0.6, 1);
+    }
+    100% {
+      opacity: 1;
+      transform: scale3d(1, 1, 1);
+    }
+  }
+  
