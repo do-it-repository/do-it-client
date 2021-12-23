@@ -5,7 +5,7 @@ import "./App.css"
 
 
 
-function User({ plan, onRemove }) {
+function Plan({ plan, onRemove }) {
   let [Plan,setPlan] = useState('plan')
 
   return (
@@ -29,7 +29,7 @@ function PlanList({ plans, onRemove }) {
   return (
     <Stack direction="column" spacing={0.3}>
       {plans.map((plan) => (
-        <User plan={plan} key={plan.id} onRemove={onRemove} />
+        <Plan plan={plan} key={plan.id} onRemove={onRemove} />
       ))}
     </Stack>
   );
