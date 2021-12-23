@@ -1,18 +1,12 @@
 import React from "react";
 import styles from "./App.modules.css";
+import TextField from "@mui/material/TextField"
+
+
 const CreateUser = ({ username, onChange, onCreate, onEnter }) => {
   return (
     <div onKeyDown={onEnter}>
-      <input
-        className={styles.input}
-        name="username"
-        placeholder="태그를 입력하세요."
-        onChange={onChange}
-        value={username}
-        autoComplete="off"
-      />
-
-      <button onClick={onCreate}>등록</button>
+      <TextField id="TagInput" name="username" onChange={onChange} value={username} autoComplete="off" variant="standard" color="warning" size="small" name="username" label="Plan creator" placeholder="플랜을 입력하고 엔터" focused />
     </div>
   );
 };
