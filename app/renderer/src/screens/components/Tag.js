@@ -36,23 +36,7 @@ export default function Tag() {
 
   const nextId = useRef(4);
 
-  //
-  const onCreate = () => {
-    const user = {
-      id: nextId.current,
-      username
-    };
-
-    setUsers(users.concat(user));
-
-    setInputs({
-      username: ""
-    });
-    nextId.current += 1;
-  };
-  //
-
-  const onEnter = (e) => {
+  const onEnterCreate = (e) => {
     if (e.key === "Enter") {
       const user = {
         id: nextId.current,
@@ -79,8 +63,7 @@ export default function Tag() {
       <CreateUser
         username={username}
         onChange={onChange}
-        onCreate={onCreate}
-        onEnter={onEnter}
+        onEnter={onEnterCreate}
       />
       <UserList users={users} onRemove={onRemove} />
     </>

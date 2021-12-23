@@ -1,6 +1,6 @@
 import React from 'react';
 import Tag from './components/Tag.js'
-import { styled, useTheme } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 
 
 const WallPaper = styled('div')({
