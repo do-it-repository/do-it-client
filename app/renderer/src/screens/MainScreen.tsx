@@ -1,5 +1,5 @@
 import React from 'react';
-import Tag from './components/Tag.js'
+import Plan from './components/Plan.js'
 import { styled } from '@mui/material/styles';
 
 
@@ -40,7 +40,6 @@ const Widget = styled('div')(({ theme }) => ({
   borderRadius: 16,
   width: 343,
   maxWidth: '100%',
-  margin: 'auto',
   position: 'relative',
   zIndex: 1,
   backgroundColor:
@@ -52,9 +51,9 @@ const Widget = styled('div')(({ theme }) => ({
 export default function MainScreen() {
   return (
     <div className="ui container">
-      <WallPaper />
-      <Widget>
-        <Tag />
+      <WallPaper className="WallPaper"/>
+      <Widget className="TagWidget">
+        <Plan />
       </Widget>
     </div>
   );

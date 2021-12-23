@@ -1,10 +1,8 @@
 import React, { useRef, useState } from "react";
-import UserList from "./UserList";
-import CreateUser from "./CreateUser";
+import PlanList from "./PlanList";
+import CreatePlan from "./CreatePlan.js";
 
-import styles from "./App.modules.css";
-
-export default function Tag() {
+export default function Plan() {
   const [inputs, setInputs] = useState({
     username: ""
   });
@@ -22,15 +20,15 @@ export default function Tag() {
   const [users, setUsers] = useState([
     {
       id: 1,
-      username: "velopert"
+      username: "Styled Components 조사 및 공부"
     },
     {
       id: 2,
-      username: "tester"
+      username: "ICT 기획 및 설계 복습"
     },
     {
       id: 3,
-      username: "liz"
+      username: "Baekjoon 세 문제 풀기"
     }
   ]);
 
@@ -58,14 +56,16 @@ export default function Tag() {
     setUsers(users.filter((user) => user.id !== id));
   };
 
+
   return (
     <>
-      <CreateUser
+      <CreatePlan
         username={username}
         onChange={onChange}
         onEnter={onEnterCreate}
       />
-      <UserList users={users} onRemove={onRemove} />
+      <br />
+      <PlanList users={users} onRemove={onRemove} />
     </>
   );
 }
