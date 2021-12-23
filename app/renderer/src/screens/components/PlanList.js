@@ -5,18 +5,18 @@ import "./App.css"
 
 
 
-function User({ user, onRemove }) {
+function User({ plan, onRemove }) {
   let [Plan,setPlan] = useState('plan')
 
   return (
     <span>
-      <Chip id={user.id} 
+      <Chip id={plan.id} 
       className={Plan}
       onClick={() => {
         setPlan('unplan')
-        setTimeout(() => {onRemove(user.id)},50)
+        setTimeout(() => {onRemove(plan.id)},50)
       }}
-      label={user.username} 
+      label={plan.planname} 
       size="small" 
       color="warning" 
       draggable
@@ -25,11 +25,11 @@ function User({ user, onRemove }) {
   );
 }
 
-function PlanList({ users, onRemove }) {
+function PlanList({ plans, onRemove }) {
   return (
     <Stack direction="column" spacing={0.3}>
-      {users.map((user) => (
-        <User user={user} key={user.id} onRemove={onRemove} />
+      {plans.map((plan) => (
+        <User plan={plan} key={plan.id} onRemove={onRemove} />
       ))}
     </Stack>
   );

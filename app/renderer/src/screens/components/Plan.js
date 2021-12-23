@@ -4,10 +4,11 @@ import CreatePlan from "./CreatePlan.js";
 
 export default function Plan() {
   const [inputs, setInputs] = useState({
-    username: ""
+    id: '',
+    planname: ""
   });
 
-  const { username } = inputs;
+  const { planname } = inputs;
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -17,18 +18,18 @@ export default function Plan() {
     });
   };
 
-  const [users, setUsers] = useState([
+  const [plans, setPlans] = useState([
     {
       id: 1,
-      username: "Styled Components 조사 및 공부"
+      planname: "Styled Components 조사 및 공부"
     },
     {
       id: 2,
-      username: "ICT 기획 및 설계 복습"
+      planname: "ICT 기획 및 설계 복습"
     },
     {
       id: 3,
-      username: "Baekjoon 세 문제 풀기"
+      planname: "Baekjoon 세 문제 풀기"
     }
   ]);
 
@@ -36,36 +37,39 @@ export default function Plan() {
 
   const onEnterCreate = (e) => {
     if (e.key === "Enter") {
-      const user = {
+      if (e.target === null){
+        
+      }
+      const plan = {
         id: nextId.current,
-        username
+        planname
       };
 
-      setUsers(users.concat(user));
+      setPlans(plans.concat(plan));
 
       setInputs({
-        username: ""
+        planname: ""
       });
       nextId.current += 1;
     }
   };
 
   const onRemove = (id) => {
-    // user.id가 파라미터로 일치하지 않은 원소만 추출해서 새로운 배열을 만듦
-    // = user.id가 id인 것을 제거함
-    setUsers(users.filter((user) => user.id !== id));
+    // plan.id가 파라미터로 일치하지 않은 원소만 추출해서 새로운 배열을 만듦
+    // = plan.id가 id인 것을 제거함
+    setPlans(plans.filter((plan) => plan.id !== id));
   };
 
 
   return (
     <>
       <CreatePlan
-        username={username}
+        planname={planname}
         onChange={onChange}
         onEnter={onEnterCreate}
       />
       <br />
-      <PlanList users={users} onRemove={onRemove} />
+      <PlanList plans={plans} onRemove={onRemove} />
     </>
   );
 }
