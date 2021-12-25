@@ -19,5 +19,5 @@
     "baseUrl": "src"
   },
   "exclude": ["node_modules"],
-  "include": ["**/*.ts", "**/*.tsx"]
+  "include": ["**/*.ts", "**/*.tsx", "app/renderer/src/screens/components/UserList.jsx", "app/renderer/src/screens/components/CreateUser.jsx", "app/renderer/src/screens/components/App.jsx"]
 }
