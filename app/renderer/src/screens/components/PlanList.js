@@ -1,26 +1,27 @@
 import React, {useState} from "react";
 import Stack from "@mui/material/Stack"
 import Chip from "@mui/material/Chip"
-import "./App.css"
+import Zoom from "@mui/material/Zoom"
 
 
 
 function Plan({ plan, onRemove }) {
-  let [Plan,setPlan] = useState('plan')
+  const [planExist, setPlanExist] = useState(true);
+
+  const ChipPlan = <Chip id={plan.id}
+  onClick={() => {
+    setPlanExist(!planExist)
+    setTimeout(() => {onRemove(plan.id)},90)}
+  }
+  label={plan.planname} 
+  size="small" 
+  color="warning" 
+  draggable
+  />
 
   return (
     <span>
-      <Chip id={plan.id} 
-      className={Plan}
-      onClick={() => {
-        setPlan('unplan')
-        setTimeout(() => {onRemove(plan.id)},50)
-      }}
-      label={plan.planname} 
-      size="small" 
-      color="warning" 
-      draggable
-      />
+      <Zoom in={planExist}>{ChipPlan}</Zoom>
     </span>
   );
 }
