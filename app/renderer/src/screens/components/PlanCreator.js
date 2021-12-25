@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import PlanList from "./PlanList";
 import CreatePlan from "./CreatePlan.js";
 
-export default function Plan() {
+export default function PlanCreator() {
   const [inputs, setInputs] = useState({
     id: '',
     planname: ""

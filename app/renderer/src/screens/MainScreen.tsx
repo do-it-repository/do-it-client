@@ -1,5 +1,5 @@
 import React from 'react';
-import Plan from './components/Plan.js'
+import PlanCreator from './components/PlanCreator.js'
 import { styled } from '@mui/material/styles';
 
 
@@ -50,10 +50,10 @@ const Widget = styled('div')(({ theme }) => ({
 
 export default function MainScreen() {
   return (
-    <div className="ui container">
-      <WallPaper className="WallPaper"/>
-      <Widget className="TagWidget">
-        <Plan />
+    <div>
+      <WallPaper/>
+      <Widget>
+        <PlanCreator />
       </Widget>
     </div>
   );
