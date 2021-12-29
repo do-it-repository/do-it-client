@@ -1,5 +1,5 @@
 import React from 'react'
-import PlanCreator from './components/PlanCreator.js'
+import PlanCreator from './components/PlanCreator'
 import { styled } from '@mui/material/styles'
 
 const WallPaper = styled('div')({
