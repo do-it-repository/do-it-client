@@ -1,29 +1,32 @@
-import React, {useState} from "react";
-import Stack from "@mui/material/Stack"
-import Chip from "@mui/material/Chip"
-import Zoom from "@mui/material/Zoom"
-
-
+import React, { useState } from 'react'
+import Stack from '@mui/material/Stack'
+import Chip from '@mui/material/Chip'
+import Zoom from '@mui/material/Zoom'
 
 function Plan({ plan, onRemove }) {
-  const [planExist, setPlanExist] = useState(true);
+  const [planExist, setPlanExist] = useState(true)
 
-  const ChipPlan = <Chip id={plan.id}
-  onClick={() => {
-    setPlanExist(!planExist)
-    setTimeout(() => {onRemove(plan.id)},90)}
-  }
-  label={plan.planname} 
-  size="small" 
-  color="warning" 
-  draggable
-  />
+  const ChipPlan = (
+    <Chip
+      id={plan.id}
+      onClick={() => {
+        setPlanExist(!planExist)
+        setTimeout(() => {
+          onRemove(plan.id)
+        }, 90)
+      }}
+      label={plan.planname}
+      size="small"
+      color="warning"
+      draggable
+    />
+  )
 
   return (
     <span>
       <Zoom in={planExist}>{ChipPlan}</Zoom>
     </span>
-  );
+  )
 }
 
 function PlanList({ plans, onRemove }) {
@@ -33,7 +36,7 @@ function PlanList({ plans, onRemove }) {
         <Plan plan={plan} key={plan.id} onRemove={onRemove} />
       ))}
     </Stack>
-  );
+  )
 }
 
-export default PlanList;
+export default PlanList

@@ -1,6 +1,6 @@
-import React from 'react'
-import PlanCreator from './components/PlanCreator.js'
-import { styled } from '@mui/material/styles'
+import React from 'react';
+import PlanCreator from './components/PlanCreator.js';
+import { styled } from '@mui/material/styles';
 
 const WallPaper = styled('div')({
   position: 'absolute',
@@ -32,7 +32,7 @@ const WallPaper = styled('div')({
       'radial-gradient(at center center, rgb(247, 237, 225) 0%, rgba(247, 237, 225, 0) 70%)',
     transform: 'rotate(30deg)',
   },
-})
+});
 
 const Widget = styled('div')(({ theme }) => ({
   padding: 16,
@@ -44,7 +44,7 @@ const Widget = styled('div')(({ theme }) => ({
   backgroundColor:
     theme.palette.mode === 'dark' ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.4)',
   backdropFilter: 'blur(40px)',
-}))
+}));
 
 export default function MainScreen() {
   return (
@@ -54,5 +54,5 @@ export default function MainScreen() {
         <PlanCreator />
       </Widget>
     </div>
-  )
+  );
 }
