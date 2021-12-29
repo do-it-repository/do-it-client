@@ -1,10 +1,11 @@
-import React from 'react';
-import MainScreen from './screens/MainScreen';
+import { Box } from '@mui/material'
+import React from 'react'
+import { Mandalart } from './components/mandalart/Mandalart'
 
 export default function App() {
   return (
-    <div>
-      <MainScreen />
-    </div>
-  );
+    <Box>
+      <Mandalart />
+    </Box>
+  )
 }
