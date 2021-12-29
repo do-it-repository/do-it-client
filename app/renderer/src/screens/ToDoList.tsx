@@ -1,5 +1,5 @@
 import React from 'react'
-import PlanCreator from './components/PlanCreator'
+import PlanCreator from './components/planTagFactory/PlanCreator'
 import { styled } from '@mui/material/styles'
 
 const WallPaper = styled('div')({
@@ -46,7 +46,7 @@ const Widget = styled('div')(({ theme }) => ({
   backdropFilter: 'blur(40px)',
 }))
 
-export default function MainScreen() {
+export default function ToDoList() {
   return (
     <div>
       <WallPaper />

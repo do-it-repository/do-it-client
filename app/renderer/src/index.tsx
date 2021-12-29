@@ -1,11 +1,11 @@
 import React from 'react'
-import Planner from './screens/Planner'
+import ToDoList from './screens/ToDoList'
 import { Box } from '@mui/material'
 
 export default function App() {
   return (
     <Box>
-      <Planner />
+      <ToDoList />
     </Box>
   )
 }

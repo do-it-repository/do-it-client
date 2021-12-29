@@ -2,6 +2,8 @@ import React, { useRef, useState } from 'react'
 import PlanList from './PlanList'
 import CreatePlan from './CreatePlan'
 
+import defaultPlanTags from './constant'
+
 export default function PlanCreator() {
   const [inputs, setInputs] = useState({
     id: '',
@@ -18,20 +20,7 @@ export default function PlanCreator() {
     })
   }
 
-  const [plans, setPlans] = useState([
-    {
-      id: 1,
-      planname: 'Styled Components 조사 및 공부',
-    },
-    {
-      id: 2,
-      planname: 'ICT 기획 및 설계 복습',
-    },
-    {
-      id: 3,
-      planname: 'Baekjoon 세 문제 풀기',
-    },
-  ])
+  const [plans, setPlans] = useState(defaultPlanTags)
 
   const nextId = useRef(4)
 
