@@ -1,6 +1,9 @@
 import React from 'react'
-import PlanCreator from './components/planTagFactory/PlanCreator'
+import PlanCreator from './components/planTagFactoryArea/PlanCreator'
 import { styled } from '@mui/material/styles'
+
+import Grid from '@mui/material/Grid'
+import Box from '@mui/material/Box'
 
 const WallPaper = styled('div')({
   position: 'absolute',
@@ -48,11 +51,20 @@ const Widget = styled('div')(({ theme }) => ({
 
 export default function ToDoList() {
   return (
-    <div>
+    <Box>
       <WallPaper />
-      <Widget>
-        <PlanCreator />
-      </Widget>
-    </div>
+      <Grid container direction="row" spacing={10}>
+        <Grid key={1} item>
+          <Widget>
+            <PlanCreator />
+          </Widget>
+        </Grid>
+        <Grid key={2} item>
+          <Widget>
+            <PlanCreator />
+          </Widget>
+        </Grid>
+      </Grid>
+    </Box>
   )
 }
