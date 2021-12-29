@@ -3,10 +3,15 @@ import Stack from '@mui/material/Stack'
 import Chip from '@mui/material/Chip'
 import Zoom from '@mui/material/Zoom'
 
-function Plan({ plan, onRemove }) {
+interface PlanFuncType {
+  plan: any
+  onRemove: any
+}
+
+function Plan({ plan, onRemove }: PlanFuncType): JSX.Element {
   const [planExist, setPlanExist] = useState(true)
 
-  const ChipPlan = (
+  const ChipPlan: JSX.Element = (
     <Chip
       id={plan.id}
       onClick={() => {
@@ -29,10 +34,15 @@ function Plan({ plan, onRemove }) {
   )
 }
 
-function PlanList({ plans, onRemove }) {
+interface planList {
+  plans: any
+  onRemove: any
+}
+
+function PlanList({ plans, onRemove }: planList): JSX.Element {
   return (
     <Stack direction="column" spacing={0.3}>
-      {plans.map((plan) => (
+      {plans.map((plan: any) => (
         <Plan plan={plan} key={plan.id} onRemove={onRemove} />
       ))}
     </Stack>

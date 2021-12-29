@@ -1,7 +1,13 @@
 import React from 'react'
 import TextField from '@mui/material/TextField'
 
-const CreatePlan = ({ planname, onChange, onEnter }) => {
+interface createPlan {
+  planname: any
+  onChange: any
+  onEnter: any
+}
+
+const CreatePlan = ({ planname, onChange, onEnter }: createPlan): any => {
   return (
     <div onKeyDown={onEnter}>
       <TextField
@@ -13,7 +19,6 @@ const CreatePlan = ({ planname, onChange, onEnter }) => {
         variant="standard"
         color="warning"
         size="small"
-        name="planname"
         label="Plan creator"
         placeholder="플랜을 입력하고 엔터"
         focused
