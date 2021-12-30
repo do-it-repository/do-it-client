@@ -26,8 +26,6 @@ export default function PlanCreator() {
 
   const onEnterCreate = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      if (e.target === null) {
-      }
       const plan = {
         id: nextId.current,
         planname,
