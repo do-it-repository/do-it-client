@@ -1,8 +1,5 @@
 import React from 'react'
 import PlanCreator from './components/planTagFactoryArea/PlanCreator'
-import TodoLists from './components/TodoListArea/AlignTodoList'
-import Grid from '@mui/material/Grid'
-import Box from '@mui/material/Box'
 import { styled } from '@mui/material/styles'
 
 const WallPaper = styled('div')({
@@ -37,7 +34,7 @@ const WallPaper = styled('div')({
   },
 })
 
-const WidgetPlanFactory = styled('div')(({ theme }) => ({
+const Widget = styled('div')(({ theme }) => ({
   padding: 16,
   borderRadius: 16,
   width: 343,
@@ -49,35 +46,13 @@ const WidgetPlanFactory = styled('div')(({ theme }) => ({
   backdropFilter: 'blur(40px)',
 }))
 
-const WidgetTodoList = styled('div')(({ theme }) => ({
-  padding: 16,
-  borderRadius: 40,
-  width: 650,
-  height: 700,
-  maxWidth: '100%',
-  position: 'relative',
-  zIndex: 1,
-  backgroundColor:
-    theme.palette.mode === 'dark' ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.4)',
-  backdropFilter: 'blur(60px)',
-}))
-
-export default function ToDoList() {
+export default function CalenderPlanner() {
   return (
-    <Box>
+    <div>
       <WallPaper />
-      <Grid container direction="row" spacing={10}>
-        <Grid key={1} item>
-          <WidgetPlanFactory>
-            <PlanCreator />
-          </WidgetPlanFactory>
-        </Grid>
-        <Grid key={2} item>
-          <WidgetTodoList>
-            <TodoLists />
-          </WidgetTodoList>
-        </Grid>
-      </Grid>
-    </Box>
+      <Widget>
+        <PlanCreator />
+      </Widget>
+    </div>
   )
 }
