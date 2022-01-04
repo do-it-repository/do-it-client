@@ -1,6 +1,6 @@
 import React from 'react'
 import PlanCreator from './components/planTagFactoryArea/PlanCreator'
-import TodoLists from './components/TodoListArea/AlignTodoList'
+import { AlignTodoList } from './components/TodoListArea/AlignTodoList'
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
 import { styled } from '@mui/material/styles'
@@ -74,7 +74,7 @@ export default function ToDoList() {
         </Grid>
         <Grid key={2} item>
           <WidgetTodoList>
-            <TodoLists />
+            <AlignTodoList />
           </WidgetTodoList>
         </Grid>
       </Grid>
