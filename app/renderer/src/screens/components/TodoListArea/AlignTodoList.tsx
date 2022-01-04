@@ -6,9 +6,11 @@ import ListItemText from '@mui/material/ListItemText'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import defaultTodoPlan from './constant'
+import TodoPlanType from './type'
 
 export default function TodoLists(): JSX.Element {
-  const [todoList, setTodoList] = useState(defaultTodoPlan)
+  const [todoList, setTodoList] = useState<TodoPlanType[]>(defaultTodoPlan)
+  console.log(typeof defaultTodoPlan)
 
   function TodoList(todoListObj: any): JSX.Element {
     return (
@@ -38,9 +40,9 @@ export default function TodoLists(): JSX.Element {
 
   function TodoListCreator(todoListState: any): JSX.Element {
     return (
-      <List sx={{ width: '100%', maxWidth: 600 }}>
-        {todoListState.map((ListObj: any) => (
-          <TodoList todoListObj={ListObj} />
+      <List>
+        {todoListState.map((listObj: any) => (
+          <TodoList todoListObj={listObj} key={listObj.id} />
         ))}
       </List>
     )
@@ -49,4 +51,4 @@ export default function TodoLists(): JSX.Element {
   return <TodoListCreator todoListState={todoList} />
 }
 
-// 렌더링 안되는 문제 파악됨 : defaultPlanList의 리스트 원소 오브젝트들이 TodoList 컴포넌트에 정상적으로 읽혀오고 있지 않음. state - todoList에 저장된 녀석을 어떻게 불러야하는지가 관건
+// 렌더링 안되는 문제 파악됨 : defaultPlanList의 리스트 원소 오브젝트들이 TodoList 컴포넌트에 정상적으로 읽혀오고 있지 않음. state - todoList에 저장된 녀석을 어떻게 불러야하는지가 관건 & TodoListCreator 컴포넌트의 map 또한 손봐야함 //

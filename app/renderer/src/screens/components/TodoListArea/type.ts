@@ -1,4 +1,5 @@
-export interface TodoPlan {
+export default interface TodoPlanType {
+  id: number
   name: string
   color?: string
   durationHour?: number
