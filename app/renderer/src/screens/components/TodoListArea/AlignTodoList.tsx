@@ -9,12 +9,13 @@ import { defaultTodoPlan } from './constant'
 import { TodoPlanType } from './type'
 import IconSpeedDial from './IconSpeedDial'
 
-function TodoList({ todoListObj }: any): JSX.Element {
+function TodoList({ todo }: any): JSX.Element {
+  useState
   return (
     <Box>
       <ListItem alignItems="flex-start">
         <ListItemText
-          primary={todoListObj.planname}
+          primary={todo.planname}
           secondary={
             <React.Fragment>
               <Typography
@@ -23,25 +24,25 @@ function TodoList({ todoListObj }: any): JSX.Element {
                 variant="body2"
                 color="text.primary"
               >
-                {todoListObj.category}
+                {todo.category}
               </Typography>
-              {`  ${todoListObj.durationHour}시간`}
-              {`${todoListObj.detailedText}`}
+              {`  ${todo.durationHour}시간`}
+              {`${todo.detailedText}`}
             </React.Fragment>
           }
         />
-        <IconSpeedDial />
+        <IconSpeedDial props={todo} />
       </ListItem>
       <Divider variant="inset" component="li" />
     </Box>
   )
 }
 
-function TodoListCreator({ todoListState }: any): JSX.Element {
+function TodoListCreator({ todoList }: any): JSX.Element {
   return (
     <List>
-      {todoListState.map((listObj: any) => (
-        <TodoList todoListObj={listObj} key={listObj.id} />
+      {todoList.map((todo: any) => (
+        <TodoList todo={todo} key={todo.id} />
       ))}
     </List>
   )
@@ -49,5 +50,5 @@ function TodoListCreator({ todoListState }: any): JSX.Element {
 
 export function AlignTodoList(): JSX.Element {
   const [todoList, setTodoList] = useState<TodoPlanType[]>(defaultTodoPlan)
-  return <TodoListCreator todoListState={todoList} />
+  return <TodoListCreator todoList={todoList} />
 }
