@@ -3,12 +3,12 @@ import Stack from '@mui/material/Stack'
 import Chip from '@mui/material/Chip'
 import Zoom from '@mui/material/Zoom'
 
-interface PlanFuncType {
+interface PlanTagCreatorParam {
   plan: any
   onRemove: any
 }
 
-function Plan({ plan, onRemove }: PlanFuncType): JSX.Element {
+function PlanTagCreator({ plan, onRemove }: PlanTagCreatorParam): JSX.Element {
   const [planExist, setPlanExist] = useState(true)
 
   const ChipPlan: JSX.Element = (
@@ -34,19 +34,19 @@ function Plan({ plan, onRemove }: PlanFuncType): JSX.Element {
   )
 }
 
-interface planList {
+interface PlanTagList {
   plans: any
   onRemove: any
 }
 
-function PlanList({ plans, onRemove }: planList): JSX.Element {
+function PlanTagList({ plans, onRemove }: PlanTagList): JSX.Element {
   return (
     <Stack direction="column" spacing={0.3}>
       {plans.map((plan: any) => (
-        <Plan plan={plan} key={plan.id} onRemove={onRemove} />
+        <PlanTagCreator plan={plan} key={plan.id} onRemove={onRemove} />
       ))}
     </Stack>
   )
 }
 
-export default PlanList
+export default PlanTagList

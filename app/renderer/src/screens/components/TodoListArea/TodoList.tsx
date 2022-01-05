@@ -5,11 +5,12 @@ import Divider from '@mui/material/Divider'
 import ListItemText from '@mui/material/ListItemText'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
+import Stack from '@mui/material/Stack'
 import { defaultTodoPlan } from './constant'
 import { TodoPlanType } from './type'
 import IconSpeedDial from './IconSpeedDial'
 
-function TodoList({ todo }: any): JSX.Element {
+function TodoListItemCreator({ todo }: any): JSX.Element {
   useState
   return (
     <Box>
@@ -33,7 +34,10 @@ function TodoList({ todo }: any): JSX.Element {
         />
         <IconSpeedDial props={todo} />
       </ListItem>
-      <Divider variant="inset" component="li" />
+      <Divider
+        // variant="inset"
+        component="li"
+      />
     </Box>
   )
 }
@@ -41,14 +45,17 @@ function TodoList({ todo }: any): JSX.Element {
 function TodoListCreator({ todoList }: any): JSX.Element {
   return (
     <List>
-      {todoList.map((todo: any) => (
-        <TodoList todo={todo} key={todo.id} />
-      ))}
+      <Stack spacing={1}>
+        {todoList.map((todo: any) => (
+          <TodoListItemCreator todo={todo} key={todo.id} />
+        ))}
+      </Stack>
     </List>
   )
 }
 
-export function AlignTodoList(): JSX.Element {
+export default function TodoList(): JSX.Element {
   const [todoList, setTodoList] = useState<TodoPlanType[]>(defaultTodoPlan)
+
   return <TodoListCreator todoList={todoList} />
 }
