@@ -11,7 +11,6 @@ import { TodoPlanType } from './type'
 import IconSpeedDial from './IconSpeedDial'
 
 function TodoListItemCreator({ todo }: any): JSX.Element {
-  useState
   return (
     <Box>
       <ListItem alignItems="flex-start">
@@ -42,7 +41,8 @@ function TodoListItemCreator({ todo }: any): JSX.Element {
   )
 }
 
-function TodoListCreator({ todoList }: any): JSX.Element {
+export default function TodoList(): JSX.Element {
+  const [todoList, setTodoList] = useState<TodoPlanType[]>(defaultTodoPlan)
   return (
     <List>
       <Stack spacing={1}>
@@ -52,10 +52,4 @@ function TodoListCreator({ todoList }: any): JSX.Element {
       </Stack>
     </List>
   )
-}
-
-export default function TodoList(): JSX.Element {
-  const [todoList, setTodoList] = useState<TodoPlanType[]>(defaultTodoPlan)
-
-  return <TodoListCreator todoList={todoList} />
 }
