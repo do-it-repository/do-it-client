@@ -7,7 +7,11 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
 import EditIcon from '@mui/icons-material/Edit'
 
-export default function IconSpeedDial({ props }: any): JSX.Element {
+export default function IconSpeedDial({
+  todo,
+  onDelete,
+  id,
+}: any): JSX.Element {
   const [open, setOpen] = React.useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
@@ -16,7 +20,7 @@ export default function IconSpeedDial({ props }: any): JSX.Element {
     switch (which) {
       case 'delete':
         console.log('You have pressed delete')
-        props.id
+        onDelete((id = todo.id))
         break
       case 'copy':
         console.log('You have pressed copy')
