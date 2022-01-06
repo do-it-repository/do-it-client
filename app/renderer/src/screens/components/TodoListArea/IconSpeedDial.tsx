@@ -66,14 +66,18 @@ export default function IconSpeedDial({
       onOpen={handleOpen}
       open={open}
     >
-      {actions.map((action) => (
-        <SpeedDialAction
-          key={action.name}
-          icon={action.icon}
-          tooltipTitle={action.name}
-          onClick={action.do}
-        />
-      ))}
+      {actions.map((action) => {
+        const { name, icon } = action
+
+        return (
+          <SpeedDialAction
+            key={name}
+            icon={icon}
+            tooltipTitle={name}
+            onClick={action.do}
+          />
+        )
+      })}
     </SpeedDial>
   )
 }
