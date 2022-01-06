@@ -10,12 +10,22 @@ import { defaultTodoPlan } from './constant'
 import { TodoPlanType } from './type'
 import IconSpeedDial from './IconSpeedDial'
 
-function TodoListItemCreator({ todo, onDelete }: any): JSX.Element {
+interface TodoListItemCreatorPropType {
+  todo: TodoPlanType
+  onDelete: any
+}
+
+function TodoListItemCreator({
+  todo,
+  onDelete,
+}: TodoListItemCreatorPropType): JSX.Element {
+  const { planname, category, durationHour, detailedText } = todo
+
   return (
     <Box>
       <ListItem alignItems="flex-start">
         <ListItemText
-          primary={todo.planname}
+          primary={planname}
           secondary={
             <React.Fragment>
               <Typography
@@ -24,10 +34,10 @@ function TodoListItemCreator({ todo, onDelete }: any): JSX.Element {
                 variant="body2"
                 color="text.primary"
               >
-                {todo.category}
+                {category}
               </Typography>
-              {`  ${todo.durationHour}시간`}
-              {`${todo.detailedText}`}
+              {`  ${durationHour}시간`}
+              {`${detailedText}`}
             </React.Fragment>
           }
         />
