@@ -5,6 +5,26 @@ import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
 import { styled } from '@mui/material/styles'
 
+export default function ToDoList() {
+  return (
+    <Box sx={{ m: 2 }}>
+      <WallPaper />
+      <Grid container direction="row" spacing={10}>
+        <Grid key={1} item>
+          <WidgetPlanFactory>
+            <PlanFactory />
+          </WidgetPlanFactory>
+        </Grid>
+        <Grid key={2} item>
+          <WidgetTodoList>
+            <TodoList />
+          </WidgetTodoList>
+        </Grid>
+      </Grid>
+    </Box>
+  )
+}
+
 const WallPaper = styled('div')({
   position: 'absolute',
   width: '100%',
@@ -61,23 +81,3 @@ const WidgetTodoList = styled('div')(({ theme }) => ({
     theme.palette.mode === 'dark' ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.4)',
   backdropFilter: 'blur(60px)',
 }))
-
-export default function ToDoList() {
-  return (
-    <Box sx={{ m: 2 }}>
-      <WallPaper />
-      <Grid container direction="row" spacing={10}>
-        <Grid key={1} item>
-          <WidgetPlanFactory>
-            <PlanFactory />
-          </WidgetPlanFactory>
-        </Grid>
-        <Grid key={2} item>
-          <WidgetTodoList>
-            <TodoList />
-          </WidgetTodoList>
-        </Grid>
-      </Grid>
-    </Box>
-  )
-}

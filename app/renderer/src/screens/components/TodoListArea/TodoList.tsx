@@ -45,12 +45,12 @@ export default function TodoList(): JSX.Element {
   const [todoList, setTodoList] = useState<TodoPlanType[]>(defaultTodoPlan)
 
   const onDelete = (id: any) =>
-    setTodoList(todoList.filter((todo: any) => todo.id !== id))
+    setTodoList(todoList.filter((todo: TodoPlanType) => todo.id !== id))
 
   return (
     <List>
       <Stack spacing={1}>
-        {todoList.map((todo: any) => (
+        {todoList.map((todo: TodoPlanType) => (
           <TodoListItemCreator todo={todo} key={todo.id} onDelete={onDelete} />
         ))}
       </Stack>

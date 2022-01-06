@@ -6,29 +6,37 @@ import FileCopyIcon from '@mui/icons-material/FileCopyOutlined'
 import DeleteIcon from '@mui/icons-material/Delete'
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
 import EditIcon from '@mui/icons-material/Edit'
+import { TodoPlanType } from './type'
 
+interface IconSpeedDialPropType {
+  todo: TodoPlanType
+  onDelete: any
+}
 export default function IconSpeedDial({
   todo,
   onDelete,
-  id,
-}: any): JSX.Element {
+}: IconSpeedDialPropType): JSX.Element {
   const [open, setOpen] = React.useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
-  //handler function
-  const wireUp = (which: any) => {
-    switch (which) {
+
+  const wireUp = (operation: string) => {
+    switch (operation) {
       case 'delete':
         console.log('You have pressed delete')
-        onDelete((id = todo.id))
+        handleClose()
+        onDelete(todo.id)
         break
       case 'copy':
         console.log('You have pressed copy')
+        handleClose()
         break
       case 'convert':
         console.log('You have pressed convert')
+        handleClose()
         break
       default:
+        handleClose()
         break
     }
   }
