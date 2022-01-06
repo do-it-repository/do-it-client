@@ -1,10 +1,10 @@
 import React, { useRef, useState } from 'react'
-import PlanList from './PlanList'
-import CreatePlan from './CreatePlan'
+import PlanTagList from './PlanTagList'
+import PlanFactoryInputField from './PlanFactoryInputField'
 
 import defaultPlanTags from './constant'
 
-export default function PlanCreator() {
+export default function PlanFactory() {
   const [inputs, setInputs] = useState({
     id: '',
     planname: '',
@@ -26,8 +26,6 @@ export default function PlanCreator() {
 
   const onEnterCreate = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      if (e.target === null) {
-      }
       const plan = {
         id: nextId.current,
         planname,
@@ -51,13 +49,13 @@ export default function PlanCreator() {
 
   return (
     <>
-      <CreatePlan
+      <PlanFactoryInputField
         planname={planname}
         onChange={onChange}
         onEnter={onEnterCreate}
       />
       <br />
-      <PlanList plans={plans} onRemove={onRemove} />
+      <PlanTagList plans={plans} onRemove={onRemove} />
     </>
   )
 }

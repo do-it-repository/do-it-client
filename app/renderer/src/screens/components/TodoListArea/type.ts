@@ -1,4 +1,4 @@
-export interface PlanTagType {
+export interface TodoPlanType {
   id: number
   planname: string
   color?: string

@@ -1,13 +1,17 @@
 import React from 'react'
 import TextField from '@mui/material/TextField'
 
-interface createPlan {
+interface PlanFactoryInputFieldParam {
   planname: any
   onChange: any
   onEnter: any
 }
 
-const CreatePlan = ({ planname, onChange, onEnter }: createPlan): any => {
+const PlanFactoryInputField = ({
+  planname,
+  onChange,
+  onEnter,
+}: PlanFactoryInputFieldParam): any => {
   return (
     <div onKeyDown={onEnter}>
       <TextField
@@ -27,4 +31,4 @@ const CreatePlan = ({ planname, onChange, onEnter }: createPlan): any => {
   )
 }
 
-export default CreatePlan
+export default PlanFactoryInputField
