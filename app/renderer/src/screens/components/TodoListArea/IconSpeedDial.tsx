@@ -5,7 +5,9 @@ import SpeedDialAction from '@mui/material/SpeedDialAction'
 import FileCopyIcon from '@mui/icons-material/FileCopyOutlined'
 import DeleteIcon from '@mui/icons-material/Delete'
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
-import EditIcon from '@mui/icons-material/Edit'
+import BuildIcon from '@mui/icons-material/Build'
+import ArrowLeftOutlinedIcon from '@mui/icons-material/ArrowLeftOutlined'
+
 import { TodoPlanType } from './type'
 
 interface IconSpeedDialPropType {
@@ -60,7 +62,12 @@ export default function IconSpeedDial({
         right: 16,
         width: 10,
       }}
-      icon={<SpeedDialIcon openIcon={<EditIcon />} />}
+      icon={
+        <SpeedDialIcon
+          icon={<ArrowLeftOutlinedIcon />}
+          openIcon={<BuildIcon />}
+        />
+      }
       direction="left"
       onClose={handleClose}
       onOpen={handleOpen}

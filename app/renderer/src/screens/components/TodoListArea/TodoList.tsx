@@ -1,21 +1,23 @@
 import React, { useState } from 'react'
-import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
-import Divider from '@mui/material/Divider'
-import ListItemText from '@mui/material/ListItemText'
-import Typography from '@mui/material/Typography'
-import Box from '@mui/material/Box'
-import Stack from '@mui/material/Stack'
+import {
+  List,
+  ListItem,
+  ListItemText,
+  Divider,
+  Typography,
+} from '@mui/material'
+import { Box, Stack } from '@mui/material'
+import { IconButton } from '@mui/material'
+import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined'
+import styled from '@mui/material/styles'
+
 import { defaultTodoPlan } from './constant'
 import { TodoPlanType } from './type'
 import IconSpeedDial from './IconSpeedDial'
 
-import IconButton from '@mui/material/IconButton'
-import AddIcon from '@mui/icons-material/Add'
-
 const AddTodoButton = () => (
   <IconButton aria-label="add todo">
-    <AddIcon />
+    <AddCircleOutlinedIcon />
   </IconButton>
 )
 
