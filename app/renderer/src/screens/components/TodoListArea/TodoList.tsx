@@ -10,6 +10,15 @@ import { defaultTodoPlan } from './constant'
 import { TodoPlanType } from './type'
 import IconSpeedDial from './IconSpeedDial'
 
+import IconButton from '@mui/material/IconButton'
+import AddIcon from '@mui/icons-material/Add'
+
+const AddTodoButton = () => (
+  <IconButton aria-label="add todo">
+    <AddIcon />
+  </IconButton>
+)
+
 interface TodoListItemCreatorPropType {
   todo: TodoPlanType
   onDelete: any
@@ -63,6 +72,7 @@ export default function TodoList(): JSX.Element {
         {todoList.map((todo: TodoPlanType) => (
           <TodoListItemCreator todo={todo} key={todo.id} onDelete={onDelete} />
         ))}
+        <AddTodoButton />
       </Stack>
     </List>
   )
