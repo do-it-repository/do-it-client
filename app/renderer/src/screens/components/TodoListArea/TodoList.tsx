@@ -9,7 +9,6 @@ import {
 import { Box, Stack } from '@mui/material'
 import { IconButton } from '@mui/material'
 import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined'
-import styled from '@mui/material/styles'
 
 import { defaultTodoPlan } from './constant'
 import { TodoPlanType } from './type'
@@ -34,26 +33,29 @@ function TodoListItemCreator({
 
   return (
     <Box>
-      <ListItem alignItems="flex-start">
-        <ListItemText
-          primary={planname}
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                {category}
-              </Typography>
-              {`  ${durationHour}시간`}
-              {`${detailedText}`}
-            </React.Fragment>
-          }
-        />
-        <IconSpeedDial todo={todo} onDelete={onDelete} />
-      </ListItem>
+      <div>
+        <ListItem alignItems="flex-start">
+          <ListItemText
+            primary={planname}
+            secondary={
+              <React.Fragment>
+                <Typography
+                  sx={{ display: 'inline' }}
+                  component="span"
+                  variant="body2"
+                  color="text.primary"
+                >
+                  {category}
+                </Typography>
+                {`  ${durationHour}시간`}
+                {`${detailedText}`}
+              </React.Fragment>
+            }
+          />
+          <IconSpeedDial todo={todo} onDelete={onDelete} />
+        </ListItem>
+      </div>
+
       <Divider
         // variant="inset"
         component="li"
