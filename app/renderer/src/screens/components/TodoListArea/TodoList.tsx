@@ -1,14 +1,24 @@
 import React, { useState } from 'react'
-import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
-import Divider from '@mui/material/Divider'
-import ListItemText from '@mui/material/ListItemText'
-import Typography from '@mui/material/Typography'
-import Box from '@mui/material/Box'
-import Stack from '@mui/material/Stack'
+import {
+  List,
+  ListItem,
+  ListItemText,
+  Divider,
+  Typography,
+} from '@mui/material'
+import { Box, Stack } from '@mui/material'
+import { IconButton } from '@mui/material'
+import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined'
+
 import { defaultTodoPlan } from './constant'
 import { TodoPlanType } from './type'
 import IconSpeedDial from './IconSpeedDial'
+
+const AddTodoButton = () => (
+  <IconButton aria-label="add todo">
+    <AddCircleOutlinedIcon />
+  </IconButton>
+)
 
 interface TodoListItemCreatorPropType {
   todo: TodoPlanType
@@ -23,26 +33,29 @@ function TodoListItemCreator({
 
   return (
     <Box>
-      <ListItem alignItems="flex-start">
-        <ListItemText
-          primary={planname}
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                {category}
-              </Typography>
-              {`  ${durationHour}시간`}
-              {`${detailedText}`}
-            </React.Fragment>
-          }
-        />
-        <IconSpeedDial todo={todo} onDelete={onDelete} />
-      </ListItem>
+      <div>
+        <ListItem alignItems="flex-start">
+          <ListItemText
+            primary={planname}
+            secondary={
+              <React.Fragment>
+                <Typography
+                  sx={{ display: 'inline' }}
+                  component="span"
+                  variant="body2"
+                  color="text.primary"
+                >
+                  {category}
+                </Typography>
+                {`  ${durationHour}시간`}
+                {`${detailedText}`}
+              </React.Fragment>
+            }
+          />
+          <IconSpeedDial todo={todo} onDelete={onDelete} />
+        </ListItem>
+      </div>
+
       <Divider
         // variant="inset"
         component="li"
@@ -63,6 +76,7 @@ export default function TodoList(): JSX.Element {
         {todoList.map((todo: TodoPlanType) => (
           <TodoListItemCreator todo={todo} key={todo.id} onDelete={onDelete} />
         ))}
+        <AddTodoButton />
       </Stack>
     </List>
   )
