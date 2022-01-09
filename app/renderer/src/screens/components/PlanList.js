@@ -1,28 +1,29 @@
-import React, {useState} from "react";
-import Stack from "@mui/material/Stack"
-import Chip from "@mui/material/Chip"
-import "./App.css"
-
-
+import React, { useState } from 'react'
+import Stack from '@mui/material/Stack'
+import Chip from '@mui/material/Chip'
+import './App.css'
 
 function Plan({ plan, onRemove }) {
-  let [Plan,setPlan] = useState('plan')
+  let [Plan, setPlan] = useState('plan')
 
   return (
     <span>
-      <Chip id={plan.id} 
-      className={Plan}
-      onClick={() => {
-        setPlan('unplan')
-        setTimeout(() => {onRemove(plan.id)},50)
-      }}
-      label={plan.planname} 
-      size="small" 
-      color="warning" 
-      draggable
+      <Chip
+        id={plan.id}
+        className={Plan}
+        onClick={() => {
+          setPlan('unplan')
+          setTimeout(() => {
+            onRemove(plan.id)
+          }, 50)
+        }}
+        label={plan.planname}
+        size="small"
+        color="warning"
+        draggable
       />
     </span>
-  );
+  )
 }
 
 function PlanList({ plans, onRemove }) {
@@ -32,7 +33,7 @@ function PlanList({ plans, onRemove }) {
         <Plan plan={plan} key={plan.id} onRemove={onRemove} />
       ))}
     </Stack>
-  );
+  )
 }
 
-export default PlanList;
+export default PlanList
