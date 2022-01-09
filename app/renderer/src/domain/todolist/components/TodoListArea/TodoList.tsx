@@ -7,13 +7,11 @@ import {
   Typography,
 } from '@mui/material'
 import { Box, Stack } from '@mui/material'
-import { IconButton } from '@mui/material'
-import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined'
-import { TextField } from '@mui/material'
 
 import { defaultTodoPlan } from './constant'
 import { TodoPlanType } from './type'
 import IconSpeedDial from './IconSpeedDial'
+import { AddTodoArea } from './AddTodoArea'
 
 interface TodoListItemCreatorPropType {
   todo: TodoPlanType
@@ -63,24 +61,6 @@ export default function TodoList(): JSX.Element {
   const [todoList, setTodoList] = useState<TodoPlanType[]>(defaultTodoPlan)
   const [addMode, setAddMode] = useState(false)
 
-  const onClickAdd = (e: React.MouseEvent<HTMLInputElement>) => {
-    e.preventDefault()
-    console.log('clicked')
-    setAddMode(true)
-    console.log(addMode)
-  }
-
-  interface AddTodoButtonParam {
-    onClick: (e: any) => void
-  }
-  const AddTodoButton = ({ onClick }: AddTodoButtonParam) => {
-    return (
-      <IconButton aria-label="add todo" onClick={onClick}>
-        <AddCircleOutlinedIcon />
-      </IconButton>
-    )
-  }
-
   const onDelete = (id: number) =>
     setTodoList(todoList.filter((todo: TodoPlanType) => todo.id !== id))
 
@@ -90,7 +70,7 @@ export default function TodoList(): JSX.Element {
         {todoList.map((todo: TodoPlanType) => (
           <TodoListItemCreator todo={todo} key={todo.id} onDelete={onDelete} />
         ))}
-        <AddTodoButton onClick={onClickAdd} />
+        <AddTodoArea />
       </Stack>
     </List>
   )
