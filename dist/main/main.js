@@ -40,7 +40,7 @@ module.exports =
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "24aa4f6d30d276bedaa5";
+/******/ 	var hotCurrentHash = "59ccc98c1a9620e89a0c";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -867,8 +867,8 @@ eval("\n\n__webpack_require__(/*! source-map-support/source-map-support.js */ \"
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\JSW\Desktop\GIT\do-it-client\node_modules\electron-webpack\out\electron-main-hmr\main-hmr */"./node_modules/electron-webpack/out/electron-main-hmr/main-hmr.js");
-module.exports = __webpack_require__(/*! C:\Users\JSW\Desktop\GIT\do-it-client\app\main\index.ts */"./app/main/index.ts");
+__webpack_require__(/*! C:\Users\82107\Desktop\doit\do-it-client\node_modules\electron-webpack\out\electron-main-hmr\main-hmr */"./node_modules/electron-webpack/out/electron-main-hmr/main-hmr.js");
+module.exports = __webpack_require__(/*! C:\Users\82107\Desktop\doit\do-it-client\app\main\index.ts */"./app/main/index.ts");
 
 
 /***/ }),
