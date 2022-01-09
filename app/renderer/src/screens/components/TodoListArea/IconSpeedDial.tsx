@@ -9,6 +9,7 @@ import ModeEditIcon from '@mui/icons-material/ModeEdit'
 import ArrowLeftOutlinedIcon from '@mui/icons-material/ArrowLeftOutlined'
 
 import { TodoPlanType } from './type'
+import styled from '@emotion/styled/types/base'
 
 interface IconSpeedDialPropType {
   todo: TodoPlanType
