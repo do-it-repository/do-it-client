@@ -17,7 +17,7 @@ import IconSpeedDial from './IconSpeedDial'
 
 interface TodoListItemCreatorPropType {
   todo: TodoPlanType
-  onDelete: any
+  onDelete: (id: number) => void
 }
 
 function TodoListItemCreator({
@@ -70,7 +70,10 @@ export default function TodoList(): JSX.Element {
     console.log(addMode)
   }
 
-  const AddTodoButton = ({ onClick }: any) => {
+  interface AddTodoButtonParam {
+    onClick: (e: any) => void
+  }
+  const AddTodoButton = ({ onClick }: AddTodoButtonParam) => {
     return (
       <IconButton aria-label="add todo" onClick={onClick}>
         <AddCircleOutlinedIcon />
@@ -78,7 +81,7 @@ export default function TodoList(): JSX.Element {
     )
   }
 
-  const onDelete = (id: any) =>
+  const onDelete = (id: number) =>
     setTodoList(todoList.filter((todo: TodoPlanType) => todo.id !== id))
 
   return (

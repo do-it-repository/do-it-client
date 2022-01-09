@@ -13,7 +13,7 @@ import styled from '@emotion/styled/types/base'
 
 interface IconSpeedDialPropType {
   todo: TodoPlanType
-  onDelete: any
+  onDelete: (id: number) => void
 }
 export default function IconSpeedDial({
   todo,
@@ -45,12 +45,12 @@ export default function IconSpeedDial({
   }
 
   const actions = [
-    { icon: <DeleteIcon />, name: 'Delete', do: () => wireUp('delete') },
-    { icon: <FileCopyIcon />, name: 'Copy', do: () => wireUp('copy') },
+    { icon: <DeleteIcon />, name: 'Delete', doFunc: () => wireUp('delete') },
+    { icon: <FileCopyIcon />, name: 'Copy', doFunc: () => wireUp('copy') },
     {
       icon: <SwapHorizIcon />,
       name: 'Convert PlanType',
-      do: () => wireUp('convert'),
+      doFunc: () => wireUp('convert'),
     },
   ]
 
@@ -75,14 +75,14 @@ export default function IconSpeedDial({
       open={open}
     >
       {actions.map((action) => {
-        const { name, icon } = action
+        const { name, icon, doFunc } = action
 
         return (
           <SpeedDialAction
             key={name}
             icon={icon}
             tooltipTitle={name}
-            onClick={action.do}
+            onClick={doFunc}
           />
         )
       })}
