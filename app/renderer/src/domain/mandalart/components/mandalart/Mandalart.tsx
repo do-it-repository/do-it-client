@@ -4,7 +4,7 @@ import {
   primaryColor_100,
   primaryColor_80,
   textColor,
-} from '../../constants/color'
+} from '../../../../common/constants/color'
 import { MandalartPlanType } from './type'
 import { defaultPlans } from './constant'
 
