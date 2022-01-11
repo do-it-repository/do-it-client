@@ -7,13 +7,15 @@ import { Container } from '@mui/material'
 
 interface AddTodoButtonParam {
   onClick: (e: any) => void
+  addMode: any
 }
-const AddTodoButton = ({ onClick }: AddTodoButtonParam) => {
-  return (
+const AddTodoButton = ({ onClick, addMode }: AddTodoButtonParam) => {
+  const ButtonMode: JSX.Element = (
     <IconButton aria-label="add todo" onClick={onClick}>
       <AddCircleOutlinedIcon />
     </IconButton>
   )
+  return <Zoom in={!addMode}>{ButtonMode}</Zoom>
 }
 
 const AddMode: JSX.Element = (
@@ -24,7 +26,6 @@ const AddMode: JSX.Element = (
         marginTop: 1,
         marginLeft: 22,
       }}
-      label="New Plan Name"
       variant="standard"
       placeholder="'새로운 플랜 #분류' 를 입력하고 엔터"
       autoFocus
@@ -69,5 +70,5 @@ export const AddTodoArea = (): JSX.Element => {
   if (addMode) {
     return <AddModeOn addMode={addMode} innerRef={wrapperRef} />
   }
-  return <AddTodoButton onClick={onClickAdd} />
+  return <AddTodoButton onClick={onClickAdd} addMode={addMode} />
 }
