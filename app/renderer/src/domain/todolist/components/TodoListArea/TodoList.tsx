@@ -7,11 +7,13 @@ import {
   Typography,
 } from '@mui/material'
 import { Box, Stack } from '@mui/material'
+import { styled } from '@mui/material'
 
 import { defaultTodoPlan } from './constant'
 import { TodoPlanType } from './type'
 import IconSpeedDial from './IconSpeedDial'
 import { AddTodoArea } from './AddTodoArea'
+import Badge, { BadgeProps } from '@mui/material/Badge'
 
 interface TodoListItemCreatorPropType {
   todo: TodoPlanType
@@ -23,24 +25,32 @@ function TodoListItemCreator({
   onDelete,
 }: TodoListItemCreatorPropType): JSX.Element {
   const { planname, category, durationHour, detailedText } = todo
-
   return (
     <Box>
       <div>
         <ListItem alignItems="flex-start">
           <ListItemText
-            primary={planname}
-            secondary={
+            primary={
               <React.Fragment>
-                <Typography
-                  sx={{ display: 'inline' }}
-                  component="span"
-                  variant="body2"
-                  color="text.primary"
+                <StyledBadge
+                  badgeContent={`${durationHour}시간`}
+                  color="primary"
                 >
                   {category}
-                </Typography>
-                {`  ${durationHour}시간`}
+                </StyledBadge>
+                <Box sx={{ marginTop: 1 }}>{planname}</Box>
+              </React.Fragment>
+            }
+            secondary={
+              <React.Fragment>
+                <div>
+                  <Typography
+                    sx={{ display: 'inline' }}
+                    component="span"
+                    variant="body2"
+                    color="text.primary"
+                  ></Typography>
+                </div>
                 {`${detailedText}`}
               </React.Fragment>
             }
@@ -74,3 +84,12 @@ export default function TodoList(): JSX.Element {
     </List>
   )
 }
+
+const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
+  '& .MuiBadge-badge': {
+    right: -30,
+    top: 10,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: '0 4px',
+  },
+}))
