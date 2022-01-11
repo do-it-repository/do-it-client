@@ -59,7 +59,6 @@ function TodoListItemCreator({
 
 export default function TodoList(): JSX.Element {
   const [todoList, setTodoList] = useState<TodoPlanType[]>(defaultTodoPlan)
-  const [addMode, setAddMode] = useState(false)
 
   const onDelete = (id: number) =>
     setTodoList(todoList.filter((todo: TodoPlanType) => todo.id !== id))

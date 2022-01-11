@@ -3,7 +3,7 @@ import { IconButton } from '@mui/material'
 import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined'
 import { TextField } from '@mui/material'
 import Zoom from '@mui/material/Zoom'
-import { Box } from '@mui/system'
+import { Container } from '@mui/material'
 
 interface AddTodoButtonParam {
   onClick: (e: any) => void
@@ -17,21 +17,27 @@ const AddTodoButton = ({ onClick }: AddTodoButtonParam) => {
 }
 
 const AddMode: JSX.Element = (
-  <TextField
-    // sx={{ width: 150 }}
-    label="New Plan Name"
-    variant="standard"
-    placeholder="새로운 플랜을 입력하고 엔터"
-    focused
-  />
+  <Container>
+    <TextField
+      sx={{
+        minWidth: 270,
+        marginTop: 1,
+        marginLeft: 22,
+      }}
+      label="New Plan Name"
+      variant="standard"
+      placeholder="'새로운 플랜 #분류' 를 입력하고 엔터"
+      autoFocus
+    />
+  </Container>
 )
-const AddModeOn = React.forwardRef((props, ref): JSX.Element => {
+const AddModeOn = ({ innerRef, addMode }: any): JSX.Element => {
   return (
-    <Zoom in={true} ref={ref}>
+    <Zoom in={addMode} ref={innerRef}>
       {AddMode}
     </Zoom>
   )
-})
+}
 
 function offAddMode(
   setAddMode: React.Dispatch<React.SetStateAction<boolean>>,
@@ -40,7 +46,7 @@ function offAddMode(
   useEffect(() => {
     function handleClickOutside(event: any) {
       if (ref.current && !ref.current.contains(event.target)) {
-        setAddMode(false)
+        setAddMode((prev) => !prev)
       }
     }
     document.addEventListener('mousedown', handleClickOutside)
@@ -50,7 +56,7 @@ function offAddMode(
   }, [ref])
 }
 
-export const AddTodoArea = (props: any): JSX.Element => {
+export const AddTodoArea = (): JSX.Element => {
   const [addMode, setAddMode] = useState(false)
   const wrapperRef = useRef(null)
   offAddMode(setAddMode, wrapperRef)
@@ -61,12 +67,7 @@ export const AddTodoArea = (props: any): JSX.Element => {
   }
 
   if (addMode) {
-    return (
-      // <span ref={wrapperRef}>
-      <AddModeOn ref={wrapperRef} />
-      /* {props.children}
-      </span> */
-    )
+    return <AddModeOn addMode={addMode} innerRef={wrapperRef} />
   }
   return <AddTodoButton onClick={onClickAdd} />
 }

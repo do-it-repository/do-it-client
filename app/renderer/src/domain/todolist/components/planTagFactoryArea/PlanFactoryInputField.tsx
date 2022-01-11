@@ -23,9 +23,8 @@ const PlanFactoryInputField = ({
         variant="standard"
         color="warning"
         size="small"
-        label="Plan creator"
+        label="Plan Creator"
         placeholder="플랜을 입력하고 엔터"
-        focused
       />
     </div>
   )
