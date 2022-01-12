@@ -1,11 +1,11 @@
-import { Box } from '@mui/material'
 import React from 'react'
-import { Mandalart } from './components/mandalart/Mandalart'
+import ToDoList from './domain/todolist/screens/ToDoListPlanner'
+import { Box } from '@mui/material'
 
 export default function App() {
   return (
     <Box>
-      <Mandalart />
+      <ToDoList />
     </Box>
   )
 }
