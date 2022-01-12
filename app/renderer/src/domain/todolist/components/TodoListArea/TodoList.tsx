@@ -25,35 +25,36 @@ function TodoListItemCreator({
   onDelete,
 }: TodoListItemCreatorPropType): JSX.Element {
   const { planname, category, durationHour, detailedText } = todo
+
+  const PrimaryCategoryAndHour: JSX.Element = (
+    <React.Fragment>
+      <StyledBadge badgeContent={`${durationHour}시간`} color="primary">
+        {category}
+      </StyledBadge>
+      <Box sx={{ marginTop: 1 }}>{planname}</Box>
+    </React.Fragment>
+  )
+
+  const SecondaryDetailedText: JSX.Element = (
+    <React.Fragment>
+      <div>
+        <Typography
+          sx={{ display: 'inline' }}
+          component="span"
+          variant="body2"
+          color="text.primary"
+        ></Typography>
+      </div>
+      {`${detailedText}`}
+    </React.Fragment>
+  )
   return (
     <Box>
       <div>
         <ListItem alignItems="flex-start">
           <ListItemText
-            primary={
-              <React.Fragment>
-                <StyledBadge
-                  badgeContent={`${durationHour}시간`}
-                  color="primary"
-                >
-                  {category}
-                </StyledBadge>
-                <Box sx={{ marginTop: 1 }}>{planname}</Box>
-              </React.Fragment>
-            }
-            secondary={
-              <React.Fragment>
-                <div>
-                  <Typography
-                    sx={{ display: 'inline' }}
-                    component="span"
-                    variant="body2"
-                    color="text.primary"
-                  ></Typography>
-                </div>
-                {`${detailedText}`}
-              </React.Fragment>
-            }
+            primary={PrimaryCategoryAndHour}
+            secondary={SecondaryDetailedText}
           />
           <IconSpeedDial todo={todo} onDelete={onDelete} />
         </ListItem>
