@@ -1,6 +1,6 @@
 export interface TodoPlanType {
   id: number
-  planname: string
+  todoname: string
   color?: string
   durationHour?: number
   category?: string

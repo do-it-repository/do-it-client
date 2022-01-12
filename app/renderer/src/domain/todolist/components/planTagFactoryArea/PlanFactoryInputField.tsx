@@ -2,16 +2,17 @@ import React from 'react'
 import TextField from '@mui/material/TextField'
 
 interface PlanFactoryInputFieldParam {
-  planname: any
-  onChange: any
-  onEnter: any
-}
+  planname: string
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onEnter: (e: React.KeyboardEvent<HTMLInputElement>) => void
+
 
 const PlanFactoryInputField = ({
   planname,
   onChange,
   onEnter,
-}: PlanFactoryInputFieldParam): any => {
+}: PlanFactoryInputFieldParam): JSX.Element => {
+
   return (
     <div onKeyDown={onEnter}>
       <TextField
@@ -23,9 +24,8 @@ const PlanFactoryInputField = ({
         variant="standard"
         color="warning"
         size="small"
-        label="Plan creator"
+        label="Plan Creator"
         placeholder="플랜을 입력하고 엔터"
-        focused
       />
     </div>
   )

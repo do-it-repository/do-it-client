@@ -5,12 +5,16 @@ import SpeedDialAction from '@mui/material/SpeedDialAction'
 import FileCopyIcon from '@mui/icons-material/FileCopyOutlined'
 import DeleteIcon from '@mui/icons-material/Delete'
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
-import EditIcon from '@mui/icons-material/Edit'
+import ModeEditIcon from '@mui/icons-material/ModeEdit'
+import ArrowLeftOutlinedIcon from '@mui/icons-material/ArrowLeftOutlined'
+
 import { TodoPlanType } from './type'
+import styled from '@emotion/styled/types/base'
 
 interface IconSpeedDialPropType {
   todo: TodoPlanType
-  onDelete: any
+  onDelete: (id: number) => void
+
 }
 export default function IconSpeedDial({
   todo,
@@ -42,12 +46,14 @@ export default function IconSpeedDial({
   }
 
   const actions = [
-    { icon: <DeleteIcon />, name: 'Delete', do: () => wireUp('delete') },
-    { icon: <FileCopyIcon />, name: 'Copy', do: () => wireUp('copy') },
+
+    { icon: <DeleteIcon />, name: 'Delete', doFunc: () => wireUp('delete') },
+    { icon: <FileCopyIcon />, name: 'Copy', doFunc: () => wireUp('copy') },
     {
       icon: <SwapHorizIcon />,
       name: 'Convert PlanType',
-      do: () => wireUp('convert'),
+      doFunc: () => wireUp('convert'),
+
     },
   ]
 
@@ -60,21 +66,29 @@ export default function IconSpeedDial({
         right: 16,
         width: 10,
       }}
-      icon={<SpeedDialIcon openIcon={<EditIcon />} />}
+
+      icon={
+        <SpeedDialIcon
+          icon={<ArrowLeftOutlinedIcon />}
+          openIcon={<ModeEditIcon />}
+        />
+      }
       direction="left"
       onClose={handleClose}
       onOpen={handleOpen}
       open={open}
     >
       {actions.map((action) => {
-        const { name, icon } = action
+
+        const { name, icon, doFunc } = action
 
         return (
           <SpeedDialAction
             key={name}
             icon={icon}
             tooltipTitle={name}
-            onClick={action.do}
+            onClick={doFunc}
+
           />
         )
       })}
