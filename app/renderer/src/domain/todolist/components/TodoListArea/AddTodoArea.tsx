@@ -18,24 +18,55 @@ const AddTodoButton = ({ onClick, addMode }: AddTodoButtonParam) => {
   return <Zoom in={!addMode}>{ButtonMode}</Zoom>
 }
 
-const AddMode: JSX.Element = (
+interface AddModeParam {
+  todoname: any
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onEnter: (e: React.KeyboardEvent<HTMLInputElement>) => void
+}
+
+const AddMode = ({
+  todoname,
+  onChange,
+  onEnter,
+}: AddModeParam): JSX.Element => (
   <Container>
-    <TextField
-      sx={{
-        minWidth: 270,
-        marginTop: 1,
-        marginLeft: 22,
-      }}
-      variant="standard"
-      placeholder="'새로운 플랜 #분류' 를 입력하고 엔터"
-      autoFocus
-    />
+    <div onKeyDown={onEnter}>
+      <TextField
+        onChange={onChange}
+        onKeyDown={onEnter}
+        sx={{
+          minWidth: 270,
+          marginTop: 1,
+          marginLeft: 22,
+        }}
+        value={todoname}
+        variant="standard"
+        placeholder="'새로운 플랜 #분류' 를 입력하고 엔터"
+        autoFocus
+      />
+    </div>
   </Container>
 )
-const AddModeOn = ({ innerRef, addMode }: any): JSX.Element => {
+
+interface AddModeOnParam {
+  innerRef: any
+  addMode: any
+  todoname: any
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onEnter: (e: React.KeyboardEvent<HTMLInputElement>) => void
+}
+const AddModeOn = ({
+  innerRef,
+  addMode,
+  todoname,
+  onChange,
+  onEnter,
+}: AddModeOnParam): JSX.Element => {
   return (
     <Zoom in={addMode} ref={innerRef}>
-      {AddMode}
+      <React.Fragment>
+        <AddMode todoname={todoname} onChange={onChange} onEnter={onEnter} />
+      </React.Fragment>
     </Zoom>
   )
 }
@@ -57,7 +88,16 @@ function offAddMode(
   }, [ref])
 }
 
-export const AddTodoArea = (): JSX.Element => {
+interface AddTodoAreaParam {
+  todoname: any
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onEnter: (e: React.KeyboardEvent<HTMLInputElement>) => void
+}
+export const AddTodoArea = ({
+  todoname,
+  onChange,
+  onEnter,
+}: AddTodoAreaParam): JSX.Element => {
   const [addMode, setAddMode] = useState(false)
   const wrapperRef = useRef(null)
   offAddMode(setAddMode, wrapperRef)
@@ -68,7 +108,15 @@ export const AddTodoArea = (): JSX.Element => {
   }
 
   if (addMode) {
-    return <AddModeOn addMode={addMode} innerRef={wrapperRef} />
+    return (
+      <AddModeOn
+        addMode={addMode}
+        innerRef={wrapperRef}
+        todoname={todoname}
+        onChange={onChange}
+        onEnter={onEnter}
+      />
+    )
   }
   return <AddTodoButton onClick={onClickAdd} addMode={addMode} />
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import {
   List,
   ListItem,
@@ -24,14 +24,14 @@ function TodoListItemCreator({
   todo,
   onDelete,
 }: TodoListItemCreatorPropType): JSX.Element {
-  const { planname, category, durationHour, detailedText } = todo
+  const { todoname, category, durationHour, detailedText } = todo
 
   const PrimaryCategoryAndHour: JSX.Element = (
     <React.Fragment>
       <StyledBadge badgeContent={`${durationHour}시간`} color="primary">
         {category}
       </StyledBadge>
-      <Box sx={{ marginTop: 1 }}>{planname}</Box>
+      <Box sx={{ marginTop: 1 }}>{todoname}</Box>
     </React.Fragment>
   )
 
@@ -69,7 +69,34 @@ function TodoListItemCreator({
 }
 
 export default function TodoList(): JSX.Element {
+  const [inputs, setInputs] = useState({
+    id: '',
+    todoname: '',
+  })
+  const { todoname } = inputs
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    setInputs({ ...inputs, [name]: value })
+  }
+
   const [todoList, setTodoList] = useState<TodoPlanType[]>(defaultTodoPlan)
+  const nextId = useRef(todoList.length + 1)
+  const onEnterCreate = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      const newTodo = {
+        id: nextId.current,
+        todoname,
+      }
+
+      setTodoList(todoList.concat(newTodo))
+
+      setInputs({
+        id: '',
+        todoname: '',
+      })
+      nextId.current += 1
+    }
+  }
 
   const onDelete = (id: number) =>
     setTodoList(todoList.filter((todo: TodoPlanType) => todo.id !== id))
@@ -80,7 +107,11 @@ export default function TodoList(): JSX.Element {
         {todoList.map((todo: TodoPlanType) => (
           <TodoListItemCreator todo={todo} key={todo.id} onDelete={onDelete} />
         ))}
-        <AddTodoArea />
+        <AddTodoArea
+          todoname={todoname}
+          onChange={onChange}
+          onEnter={onEnterCreate}
+        />
       </Stack>
     </List>
   )
