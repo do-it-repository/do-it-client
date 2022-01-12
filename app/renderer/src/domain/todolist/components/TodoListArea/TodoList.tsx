@@ -1,3 +1,4 @@
+
 import React, { useState, useRef } from 'react'
 import {
   List,
@@ -18,12 +19,14 @@ import Badge, { BadgeProps } from '@mui/material/Badge'
 interface TodoListItemCreatorPropType {
   todo: TodoPlanType
   onDelete: (id: number) => void
+
 }
 
 function TodoListItemCreator({
   todo,
   onDelete,
 }: TodoListItemCreatorPropType): JSX.Element {
+
   const { todoname, category, durationHour, detailedText } = todo
 
   const PrimaryCategoryAndHour: JSX.Element = (
@@ -60,6 +63,7 @@ function TodoListItemCreator({
         </ListItem>
       </div>
 
+
       <Divider
         // variant="inset"
         component="li"
@@ -69,6 +73,7 @@ function TodoListItemCreator({
 }
 
 export default function TodoList(): JSX.Element {
+
   const [inputs, setInputs] = useState({
     id: '',
     todoname: '',
@@ -99,6 +104,7 @@ export default function TodoList(): JSX.Element {
   }
 
   const onDelete = (id: number) =>
+
     setTodoList(todoList.filter((todo: TodoPlanType) => todo.id !== id))
 
   return (
@@ -107,11 +113,13 @@ export default function TodoList(): JSX.Element {
         {todoList.map((todo: TodoPlanType) => (
           <TodoListItemCreator todo={todo} key={todo.id} onDelete={onDelete} />
         ))}
+
         <AddTodoArea
           todoname={todoname}
           onChange={onChange}
           onEnter={onEnterCreate}
         />
+
       </Stack>
     </List>
   )
@@ -125,3 +133,4 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
     padding: '0 4px',
   },
 }))
+

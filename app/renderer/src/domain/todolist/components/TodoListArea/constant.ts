@@ -3,6 +3,7 @@ import { TodoPlanType } from './type'
 export const defaultTodoPlan: TodoPlanType[] = [
   {
     id: 1,
+
     todoname: 'ICT 전략 및 기획 복습',
     durationHour: 3,
     category: '📖공부',
@@ -10,6 +11,7 @@ export const defaultTodoPlan: TodoPlanType[] = [
   },
   {
     id: 2,
+
     todoname: 'Styled Components 조사 및 공부',
     durationHour: 1,
     category: '💻개발',
@@ -17,6 +19,7 @@ export const defaultTodoPlan: TodoPlanType[] = [
   },
   {
     id: 3,
+
     todoname: '헬스장 출석 및 3대 측정',
     durationHour: 2,
     category: '🏃운동',

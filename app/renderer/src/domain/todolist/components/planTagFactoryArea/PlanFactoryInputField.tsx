@@ -5,13 +5,14 @@ interface PlanFactoryInputFieldParam {
   planname: string
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   onEnter: (e: React.KeyboardEvent<HTMLInputElement>) => void
-}
+
 
 const PlanFactoryInputField = ({
   planname,
   onChange,
   onEnter,
 }: PlanFactoryInputFieldParam): JSX.Element => {
+
   return (
     <div onKeyDown={onEnter}>
       <TextField

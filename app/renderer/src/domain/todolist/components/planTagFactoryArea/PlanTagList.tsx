@@ -7,7 +7,7 @@ import { PlanTagType } from './type'
 interface PlanTagCreatorParam {
   plan: PlanTagType
   onRemove: (id: number) => void
-}
+
 
 function PlanTagCreator({ plan, onRemove }: PlanTagCreatorParam): JSX.Element {
   const [planExist, setPlanExist] = useState(true)
@@ -38,6 +38,7 @@ function PlanTagCreator({ plan, onRemove }: PlanTagCreatorParam): JSX.Element {
 interface PlanTagList {
   plans: PlanTagType[]
   onRemove: (id: number) => void
+
 }
 
 function PlanTagList({ plans, onRemove }: PlanTagList): JSX.Element {

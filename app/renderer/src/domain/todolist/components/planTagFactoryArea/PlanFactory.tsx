@@ -22,6 +22,7 @@ export default function PlanFactory() {
 
   const [plans, setPlans] = useState(defaultPlanTags)
 
+
   const nextId = useRef(plans.length + 1)
 
   const onEnterCreate = (e: React.KeyboardEvent<HTMLInputElement>) => {
