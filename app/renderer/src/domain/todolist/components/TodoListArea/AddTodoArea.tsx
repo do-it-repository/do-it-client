@@ -57,7 +57,11 @@ function offAddMode(
   }, [ref])
 }
 
-export const AddTodoArea = (): JSX.Element => {
+export const AddTodoArea = (
+  planname: any,
+  onChange: any,
+  onEnter: any,
+): JSX.Element => {
   const [addMode, setAddMode] = useState(false)
   const wrapperRef = useRef(null)
   offAddMode(setAddMode, wrapperRef)
