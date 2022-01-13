@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import {
   List,
   ListItem,
@@ -18,11 +18,13 @@ import Badge, { BadgeProps } from '@mui/material/Badge'
 interface TodoListItemCreatorPropType {
   todo: TodoPlanType
   onDelete: (id: number) => void
+  onCopy: (todo: TodoPlanType) => void
 }
 
 function TodoListItemCreator({
   todo,
   onDelete,
+  onCopy,
 }: TodoListItemCreatorPropType): JSX.Element {
   const { planname, category, durationHour, detailedText } = todo
 
@@ -56,7 +58,7 @@ function TodoListItemCreator({
             primary={PrimaryCategoryAndHour}
             secondary={SecondaryDetailedText}
           />
-          <IconSpeedDial todo={todo} onDelete={onDelete} />
+          <IconSpeedDial todo={todo} onDelete={onDelete} onCopy={onCopy} />
         </ListItem>
       </div>
 
@@ -74,11 +76,30 @@ export default function TodoList(): JSX.Element {
   const onDelete = (id: number) =>
     setTodoList(todoList.filter((todo: TodoPlanType) => todo.id !== id))
 
+  const onCopy = (todo: TodoPlanType) => {
+    const nextId = todoList.length + 1
+    const { planname, durationHour, category, detailedText } = todo
+    const newTodo: TodoPlanType = {
+      id: nextId,
+      planname: planname,
+      durationHour: durationHour,
+      category: category,
+      detailedText: detailedText,
+    }
+
+    setTodoList(todoList.concat(newTodo))
+  }
+
   return (
     <List>
       <Stack spacing={1}>
         {todoList.map((todo: TodoPlanType) => (
-          <TodoListItemCreator todo={todo} key={todo.id} onDelete={onDelete} />
+          <TodoListItemCreator
+            todo={todo}
+            key={todo.id}
+            onDelete={onDelete}
+            onCopy={onCopy}
+          />
         ))}
         <AddTodoArea />
       </Stack>

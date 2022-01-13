@@ -14,10 +14,12 @@ import styled from '@emotion/styled/types/base'
 interface IconSpeedDialPropType {
   todo: TodoPlanType
   onDelete: (id: number) => void
+  onCopy: (todo: TodoPlanType) => void
 }
 export default function IconSpeedDial({
   todo,
   onDelete,
+  onCopy,
 }: IconSpeedDialPropType): JSX.Element {
   const [open, setOpen] = React.useState(false)
   const handleOpen = () => setOpen(true)
@@ -33,6 +35,7 @@ export default function IconSpeedDial({
       case 'copy':
         console.log('You have pressed copy')
         handleClose()
+        onCopy(todo)
         break
       case 'convert':
         console.log('You have pressed convert')
