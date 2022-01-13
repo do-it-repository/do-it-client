@@ -19,7 +19,10 @@ interface TodoListItemCreatorPropType {
   todo: TodoPlanType
   onDelete: (id: number) => void
   onCopy: (todo: TodoPlanType) => void
-  onConvert: any
+  onConvert: (
+    propMode: boolean,
+    setPropMode: (propMode: boolean) => void,
+  ) => void
 }
 
 function TodoListItemCreator({

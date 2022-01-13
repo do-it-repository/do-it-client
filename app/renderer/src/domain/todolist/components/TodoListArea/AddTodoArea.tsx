@@ -7,7 +7,7 @@ import { Container } from '@mui/material'
 
 interface AddTodoButtonParam {
   onClick: (e: any) => void
-  addMode: any
+  addMode: boolean
 }
 const AddTodoButton = ({ onClick, addMode }: AddTodoButtonParam) => {
   const ButtonMode: JSX.Element = (
@@ -57,11 +57,7 @@ function offAddMode(
   }, [ref])
 }
 
-export const AddTodoArea = (
-  planname: any,
-  onChange: any,
-  onEnter: any,
-): JSX.Element => {
+export const AddTodoArea = (): JSX.Element => {
   const [addMode, setAddMode] = useState(false)
   const wrapperRef = useRef(null)
   offAddMode(setAddMode, wrapperRef)
