@@ -41,7 +41,7 @@ export default function PlanFactory() {
     }
   }
 
-  const onRemove = (id: any) => {
+  const onRemove = (id: number) => {
     // plan.id가 파라미터로 일치하지 않은 원소만 추출해서 새로운 배열을 만듦
     // = plan.id가 id인 것을 제거함
     setPlans(plans.filter((plan) => plan.id !== id))
@@ -49,11 +49,7 @@ export default function PlanFactory() {
 
   return (
     <>
-      <PlanFactoryInputField
-        planname={planname}
-        onChange={onChange}
-        onEnter={onEnterCreate}
-      />
+      <PlanFactoryInputField onChange={onChange} onEnter={onEnterCreate} />
       <br />
       <PlanTagList plans={plans} onRemove={onRemove} />
     </>
