@@ -13,13 +13,22 @@ import styled from '@emotion/styled/types/base'
 
 interface IconSpeedDialPropType {
   todo: TodoPlanType
+  propMode: any
+  setPropMode: React.Dispatch<React.SetStateAction<boolean>>
   onDelete: (id: number) => void
   onCopy: (todo: TodoPlanType) => void
+  onConvert: (
+    propMode: boolean,
+    setPropMode: (propMode: boolean) => void,
+  ) => void
 }
 export default function IconSpeedDial({
   todo,
+  propMode,
+  setPropMode,
   onDelete,
   onCopy,
+  onConvert,
 }: IconSpeedDialPropType): JSX.Element {
   const [open, setOpen] = React.useState(false)
   const handleOpen = () => setOpen(true)
@@ -40,6 +49,7 @@ export default function IconSpeedDial({
       case 'convert':
         console.log('You have pressed convert')
         handleClose()
+        onConvert(propMode, setPropMode)
         break
       default:
         handleClose()

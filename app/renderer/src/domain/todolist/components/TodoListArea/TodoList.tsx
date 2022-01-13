@@ -19,13 +19,17 @@ interface TodoListItemCreatorPropType {
   todo: TodoPlanType
   onDelete: (id: number) => void
   onCopy: (todo: TodoPlanType) => void
+  onConvert: any
 }
 
 function TodoListItemCreator({
   todo,
   onDelete,
   onCopy,
+  onConvert,
 }: TodoListItemCreatorPropType): JSX.Element {
+  const [propMode, setPropMode] = useState(true)
+
   const { planname, category, durationHour, detailedText } = todo
 
   const PrimaryCategoryAndHour: JSX.Element = (
@@ -50,15 +54,47 @@ function TodoListItemCreator({
       {`${detailedText}`}
     </React.Fragment>
   )
+
+  if (propMode === true) {
+    return (
+      <Box>
+        <div>
+          <ListItem alignItems="flex-start">
+            <ListItemText
+              primary={PrimaryCategoryAndHour}
+              secondary={SecondaryDetailedText}
+            />
+            <IconSpeedDial
+              todo={todo}
+              propMode={propMode}
+              setPropMode={setPropMode}
+              onDelete={onDelete}
+              onCopy={onCopy}
+              onConvert={onConvert}
+            />
+          </ListItem>
+        </div>
+
+        <Divider
+          // variant="inset"
+          component="li"
+        />
+      </Box>
+    )
+  }
   return (
     <Box>
       <div>
         <ListItem alignItems="flex-start">
-          <ListItemText
-            primary={PrimaryCategoryAndHour}
-            secondary={SecondaryDetailedText}
+          <ListItemText primary={planname} />
+          <IconSpeedDial
+            todo={todo}
+            propMode={propMode}
+            setPropMode={setPropMode}
+            onDelete={onDelete}
+            onCopy={onCopy}
+            onConvert={onConvert}
           />
-          <IconSpeedDial todo={todo} onDelete={onDelete} onCopy={onCopy} />
         </ListItem>
       </div>
 
@@ -86,9 +122,13 @@ export default function TodoList(): JSX.Element {
       category: category,
       detailedText: detailedText,
     }
-
     setTodoList(todoList.concat(newTodo))
   }
+
+  const onConvert = (
+    propMode: boolean,
+    setPropMode: (propMode: boolean) => void,
+  ) => setPropMode(!propMode)
 
   return (
     <List>
@@ -99,6 +139,7 @@ export default function TodoList(): JSX.Element {
             key={todo.id}
             onDelete={onDelete}
             onCopy={onCopy}
+            onConvert={onConvert}
           />
         ))}
         <AddTodoArea />
