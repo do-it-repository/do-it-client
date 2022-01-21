@@ -133,50 +133,49 @@ export default function TodoList(): JSX.Element {
     setPropMode: (propMode: boolean) => void,
   ) => setPropMode(!propMode)
 
-  //
-  // const [inputs, setInputs] = useState({
-  //   id: '',
-  //   planname: '',
-  //   durationHour: '',
-  //   category: '',
-  //   detailedText: '',
-  // })
-  // const { planname } = inputs
+  const [inputs, setInputs] = useState({
+    id: '',
+    planname: '',
+    durationHour: '',
+    category: '',
+    detailedText: '',
+  })
+  const { planname } = inputs
 
-  // const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   // const name = e.target
-  //   // const value = e.target
-  //   const { name, value } = e.target
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // const name = e.target
+    // const value = e.target
+    const { name, value } = e.target
 
-  //   setInputs({
-  //     ...inputs,
-  //     [name]: value,
-  //   })
-  // }
+    setInputs({
+      ...inputs,
+      [name]: value,
+    })
+  }
 
-  // const nextId = useRef(todoList.length + 1)
-  // const onEnterCreate = (e: React.KeyboardEvent<HTMLInputElement>) => {
-  //   if (e.key === 'Enter') {
-  //     const newTodo: TodoPlanType = {
-  //       id: nextId.current,
-  //       planname,
-  //       durationHour: 0,
-  //       category: '',
-  //       detailedText: '',
-  //     }
-  //     setTodoList(todoList.concat(newTodo))
+  const nextId = useRef(todoList.length + 1)
+  const onEnterCreate = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      const newTodo: TodoPlanType = {
+        id: nextId.current,
+        planname,
+        durationHour: 0,
+        category: '',
+        detailedText: '',
+      }
+      setTodoList(todoList.concat(newTodo))
 
-  //     setInputs({
-  //       id: '',
-  //       planname: '',
-  //       durationHour: '',
-  //       category: '',
-  //       detailedText: '',
-  //     })
-  //     nextId.current += 1
-  //   }
-  // }
-  //
+      setInputs({
+        id: '',
+        planname: '',
+        durationHour: '',
+        category: '',
+        detailedText: '',
+      })
+      nextId.current += 1
+    }
+  }
+
   return (
     <List>
       <Stack spacing={1}>
@@ -189,9 +188,11 @@ export default function TodoList(): JSX.Element {
             onConvert={onConvert}
           />
         ))}
-        <AddTodoArea
-        // onChange={onChange} onEnter={onEnterCreate}
-        />
+        {/* <AddTodoArea
+        onChange={onChange}
+         onEnter={onEnterCreate}
+        /> */}
+        <AddTodoArea />
       </Stack>
     </List>
   )
