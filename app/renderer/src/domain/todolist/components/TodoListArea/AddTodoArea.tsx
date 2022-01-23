@@ -4,21 +4,26 @@ import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined'
 import { TextField } from '@mui/material'
 import Zoom from '@mui/material/Zoom'
 import { Container } from '@mui/material'
+import { Box, styled } from '@mui/material'
 
 interface AddTodoButtonParam {
   onClick: (e: any) => void
   addMode: any
 }
 const AddTodoButton = ({ onClick, addMode }: AddTodoButtonParam) => {
-  const ButtonMode: JSX.Element = (
+  const ButtonMode = (): JSX.Element => (
     <IconButton aria-label="add todo" onClick={onClick}>
       <AddCircleOutlinedIcon />
     </IconButton>
   )
-  return <Zoom in={!addMode}>{ButtonMode}</Zoom>
+  return (
+    <AddModeWrapper>
+      <ButtonMode />
+    </AddModeWrapper>
+  )
 }
 
-const AddMode: JSX.Element = (
+const AddMode = (): JSX.Element => (
   <Container>
     <TextField
       sx={{
@@ -34,9 +39,9 @@ const AddMode: JSX.Element = (
 )
 const AddModeOn = ({ innerRef, addMode }: any): JSX.Element => {
   return (
-    <Zoom in={addMode} ref={innerRef}>
-      {AddMode}
-    </Zoom>
+    <AddModeWrapper ref={innerRef}>
+      <AddMode />
+    </AddModeWrapper>
   )
 }
 
@@ -72,3 +77,9 @@ export const AddTodoArea = (): JSX.Element => {
   }
   return <AddTodoButton onClick={onClickAdd} addMode={addMode} />
 }
+
+const AddModeWrapper = styled(Box)({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+})
