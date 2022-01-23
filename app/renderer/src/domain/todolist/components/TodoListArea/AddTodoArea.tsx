@@ -8,9 +8,8 @@ import { Box, styled } from '@mui/material'
 
 interface AddTodoButtonParam {
   onClick: (e: any) => void
-  addMode: any
 }
-const AddTodoButton = ({ onClick, addMode }: AddTodoButtonParam) => {
+const AddTodoButton = ({ onClick }: AddTodoButtonParam) => {
   const ButtonMode = (): JSX.Element => (
     <IconButton aria-label="add todo" onClick={onClick}>
       <AddCircleOutlinedIcon />
@@ -37,7 +36,7 @@ const AddMode = (): JSX.Element => (
     />
   </Container>
 )
-const AddModeOn = ({ innerRef, addMode }: any): JSX.Element => {
+const AddModeOn = ({ innerRef }: any): JSX.Element => {
   return (
     <AddModeWrapper ref={innerRef}>
       <AddMode />
@@ -73,9 +72,9 @@ export const AddTodoArea = (): JSX.Element => {
   }
 
   if (addMode) {
-    return <AddModeOn addMode={addMode} innerRef={wrapperRef} />
+    return <AddModeOn innerRef={wrapperRef} />
   }
-  return <AddTodoButton onClick={onClickAdd} addMode={addMode} />
+  return <AddTodoButton onClick={onClickAdd} />
 }
 
 const AddModeWrapper = styled(Box)({
