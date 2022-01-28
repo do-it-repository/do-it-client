@@ -6,11 +6,12 @@ import TodoType from '../type'
 import { Primary, Secondary } from './ListItems'
 import { ShowTodoListPropType } from './type'
 
+import ShowSubTodoList from './SubTodoList/ShowSubTodoList'
+
 export default function ShowTodoList({
   todo,
 }: ShowTodoListPropType): JSX.Element {
-  const { id, plan, category, detailedText, durationHour, progress, done } =
-    todo
+  const { id, plan, category, durationHour, detailedText, subTodoList } = todo
 
   return (
     <Box>
@@ -26,6 +27,7 @@ export default function ShowTodoList({
             }
             // secondary={<Secondary detailedText={detailedText} />}
           />
+          <ShowSubTodoList subTodoList={subTodoList} />
         </ListItem>
       </Box>
       <Divider component="li" />
