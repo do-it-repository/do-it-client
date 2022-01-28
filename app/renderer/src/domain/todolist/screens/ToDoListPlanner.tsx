@@ -54,7 +54,7 @@ const WidgetTodoList = styled('div')(({ theme }) => ({
   padding: 16,
   borderRadius: 40,
   width: 650,
-  height: 700,
+  height: 900,
   maxWidth: '100%',
   position: 'relative',
   zIndex: 1,

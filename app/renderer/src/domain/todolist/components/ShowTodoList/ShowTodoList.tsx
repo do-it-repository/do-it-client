@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box } from '@mui/material'
-import { ListItem, ListItemText, Divider } from '@mui/material'
+import { List, ListItem, ListItemText, Divider } from '@mui/material'
 
 import TodoType from '../type'
 import { Primary, Secondary } from './ListItems'
@@ -15,21 +15,20 @@ export default function ShowTodoList({
 
   return (
     <Box>
-      <Box>
-        <ListItem alignItems="flex-start">
-          <ListItemText
-            primary={
-              <Primary
-                durationHour={durationHour}
-                category={category}
-                plan={plan}
-              />
-            }
-            // secondary={<Secondary detailedText={detailedText} />}
-          />
-          <ShowSubTodoList subTodoList={subTodoList} />
-        </ListItem>
-      </Box>
+      <List>
+        <ListItemText
+          sx={{ marginTop: 3 }}
+          primary={
+            <Primary
+              durationHour={durationHour}
+              category={category}
+              plan={plan}
+            />
+          }
+        />
+
+        <ShowSubTodoList subTodoList={subTodoList} />
+      </List>
       <Divider component="li" />
     </Box>
   )

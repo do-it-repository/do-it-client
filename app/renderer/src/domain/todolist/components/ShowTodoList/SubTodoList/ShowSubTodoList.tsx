@@ -10,10 +10,14 @@ export default function ShowSubTodoList({
   subTodoList,
 }: SubTodoListPropType): JSX.Element {
   return (
-    <Box>
+    <Box sx={{ marginTop: 3 }}>
       {subTodoList.map((subTodo) => {
         const { id, plan, progress } = subTodo
-        return <p key={id}>{plan}</p>
+        return (
+          <Box>
+            <p key={id}>{plan}</p>
+          </Box>
+        )
       })}
     </Box>
   )
