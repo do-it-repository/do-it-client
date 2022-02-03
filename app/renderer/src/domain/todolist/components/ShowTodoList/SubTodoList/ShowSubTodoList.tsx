@@ -14,8 +14,8 @@ export default function ShowSubTodoList({
       {subTodoList.map((subTodo) => {
         const { id, plan, progress } = subTodo
         return (
-          <Box>
-            <p key={id}>{plan}</p>
+          <Box key={id}>
+            <p>{plan}</p>
           </Box>
         )
       })}

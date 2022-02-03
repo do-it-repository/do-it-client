@@ -2,7 +2,6 @@ import React from 'react'
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
 import { styled } from '@mui/material/styles'
-
 import Todo from '../components/Todo'
 
 export default function ToDoList() {
@@ -54,9 +53,10 @@ const WidgetTodoList = styled('div')(({ theme }) => ({
   padding: 16,
   borderRadius: 40,
   width: 650,
-  height: 900,
+  height: 650,
   maxWidth: '100%',
   position: 'relative',
+  overflow: 'auto',
   zIndex: 1,
   backgroundColor:
     theme.palette.mode === 'dark' ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.4)',
