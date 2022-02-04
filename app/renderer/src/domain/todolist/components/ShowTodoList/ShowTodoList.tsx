@@ -1,12 +1,11 @@
 import React from 'react'
 import { Box } from '@mui/material'
-import { List, ListItem, ListItemText, Divider } from '@mui/material'
+import { List, ListItemText, Divider } from '@mui/material'
 
 import { Primary } from './ListItems'
 // import { Secondary } from './ListItems'
 
 import { ShowTodoListPropType } from './type'
-
 import ShowSubTodoList from './ShowSubTodoList'
 
 export default function ShowTodoList({
