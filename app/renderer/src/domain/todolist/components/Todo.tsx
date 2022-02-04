@@ -28,5 +28,8 @@ export default function Todo(): JSX.Element {
 }
 
 const AddTodoButtonWrapper = styled(Box)({
-  alignItems: 'Right',
+  display: 'flex',
+  flexFlow: 'row wrap',
+  justifyContent: 'space-around',
+  alignItems: 'right',
 })
