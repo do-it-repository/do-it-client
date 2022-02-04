@@ -1,10 +1,11 @@
 import React from 'react'
 import { Box } from '@mui/material'
 import Badge, { BadgeProps } from '@mui/material/Badge'
-import { Typography } from '@mui/material'
+// import { Typography } from '@mui/material'
 import { styled } from '@mui/material'
 
-import { PrimaryPropType, SecondaryPropType } from './type'
+import { PrimaryPropType } from './type'
+// import { SecondPropType } from './type'
 
 export function Primary({
   durationHour,
@@ -21,21 +22,21 @@ export function Primary({
   )
 }
 
-export function Secondary({ detailedText }: SecondaryPropType): JSX.Element {
-  return (
-    <Box>
-      <Box>
-        <Typography
-          sx={{ display: 'inline' }}
-          component="span"
-          variant="body2"
-          color="text.primary"
-        ></Typography>
-      </Box>
-      {`${detailedText}`}
-    </Box>
-  )
-}
+// export function Secondary({ detailedText }: SecondaryPropType): JSX.Element {
+//   return (
+//     <Box>
+//       <Box>
+//         <Typography
+//           sx={{ display: 'inline' }}
+//           component="span"
+//           variant="body2"
+//           color="text.primary"
+//         ></Typography>
+//       </Box>
+//       {`${detailedText}`}
+//     </Box>
+//   )
+// }
 
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
   '& .MuiBadge-badge': {

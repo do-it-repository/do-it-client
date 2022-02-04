@@ -13,6 +13,6 @@ export interface PrimaryPropType {
   plan: string
 }
 
-export interface SecondaryPropType {
-  detailedText: string
-}
+// export interface SecondaryPropType {
+//   detailedText: string
+// }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { SubTodoType } from '../../type'
+import { SubTodoType } from '../type'
 import { Box, ListItem, ListItemText } from '@mui/material'
 import { Divider } from '@mui/material'
 interface SubTodoListPropType {
