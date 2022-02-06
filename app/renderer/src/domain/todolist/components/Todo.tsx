@@ -6,7 +6,7 @@ import { defaultTodoList } from './constant'
 import TodoType from './type'
 
 import ShowTodoList from './ShowTodoList/ShowTodoList'
-import AddTodoButton from '../components/ShowTodoList/AddTodoButton'
+import TodoAddButton from './ShowTodoList/TodoAddButton'
 
 export default function Todo(): JSX.Element {
   const [todoList, setTodoList] = useState<TodoType[]>(defaultTodoList)
@@ -14,7 +14,7 @@ export default function Todo(): JSX.Element {
   return (
     <Box>
       <AddTodoButtonWrapper>
-        <AddTodoButton />
+        <TodoAddButton />
       </AddTodoButtonWrapper>
       <List>
         <Stack spacing={1}>

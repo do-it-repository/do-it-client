@@ -52,7 +52,7 @@ function clickOutside(
   }, [ref])
 }
 
-export default function AddTodoButton(): JSX.Element {
+export default function TodoAddButton(): JSX.Element {
   const [inputMode, setInputMode] = useState<boolean>(false)
   const wrapperRef = useRef(null)
   const onClick = (e: React.MouseEvent<HTMLInputElement>) => {
