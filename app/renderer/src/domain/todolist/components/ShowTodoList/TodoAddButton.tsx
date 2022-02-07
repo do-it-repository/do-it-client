@@ -15,7 +15,7 @@ interface ButtonModeParam {
 }
 
 interface TodoAddButtonParam {
-  EnterFunc: () => void
+  onEnter: (e: React.KeyboardEvent<HTMLInputElement>) => void
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 const InputMode = ({ onEnter, onChange, innerRef }: InputModeParam) => {
@@ -59,19 +59,13 @@ function clickOutside(
 }
 
 export default function TodoAddButton({
-  EnterFunc,
+  onEnter,
   onChange,
 }: TodoAddButtonParam): JSX.Element {
   const [inputMode, setInputMode] = useState<boolean>(false)
   const wrapperRef = useRef(null)
   const onClick = (e: React.MouseEvent<HTMLInputElement>) => {
     setInputMode(!inputMode)
-  }
-
-  const onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      EnterFunc()
-    }
   }
 
   clickOutside(setInputMode, wrapperRef)
