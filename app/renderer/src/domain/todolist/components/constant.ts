@@ -1,6 +1,6 @@
 import TodoType, { SubTodoType } from './type'
 
-const defaultSubTodo: SubTodoType[] = [
+const defaultSubTodoList: SubTodoType[] = [
   {
     id: 1,
     plan: '리덕스와의 차이점 조사하기',
@@ -37,7 +37,7 @@ export const defaultTodoList: TodoType[] = [
     },
     durationHour: 1,
     detailedText: '리덕스와의 차이점 및 사용법 조사하기',
-    subTodoList: defaultSubTodo,
+    subTodoList: defaultSubTodoList,
   },
   {
     id: 2,
@@ -48,7 +48,7 @@ export const defaultTodoList: TodoType[] = [
     },
     durationHour: 2,
     detailedText: 'Confusion Matrix 의 정확도,정밀도,재현율 계산법 복습',
-    subTodoList: defaultSubTodo,
+    subTodoList: defaultSubTodoList,
   },
   {
     id: 3,
@@ -59,6 +59,6 @@ export const defaultTodoList: TodoType[] = [
     },
     durationHour: 2,
     detailedText: '삼두 루틴 15회 4세트',
-    subTodoList: defaultSubTodo,
+    subTodoList: defaultSubTodoList,
   },
 ]

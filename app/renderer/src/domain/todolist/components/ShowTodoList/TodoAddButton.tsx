@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, ReactText } from 'react'
 import { IconButton } from '@mui/material'
 import { Box, TextField } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
@@ -13,6 +13,9 @@ interface ButtonModeParam {
   onClick: (e: React.MouseEvent<HTMLInputElement>) => void
 }
 
+interface TodoAddButtonParam {
+  onEnter: (e: React.KeyboardEvent<HTMLInputElement>) => void
+}
 const InputMode = ({ onEnter, innerRef }: InputModeParam) => {
   return (
     <InputModeTextField
@@ -52,16 +55,13 @@ function clickOutside(
   }, [ref])
 }
 
-export default function TodoAddButton(): JSX.Element {
+export default function TodoAddButton({
+  onEnter,
+}: TodoAddButtonParam): JSX.Element {
   const [inputMode, setInputMode] = useState<boolean>(false)
   const wrapperRef = useRef(null)
   const onClick = (e: React.MouseEvent<HTMLInputElement>) => {
     setInputMode(!inputMode)
-  }
-  const onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      setInputMode(!inputMode)
-    }
   }
 
   clickOutside(setInputMode, wrapperRef)
@@ -71,8 +71,6 @@ export default function TodoAddButton(): JSX.Element {
   }
   return <ButtonMode onClick={onClick} />
 }
-
-// https://github.com/do-it-repository/do-it-client/blob/feature/TodoDetail/app/renderer/src/domain/todolist/components/TodoListArea/AddTodoArea.tsx
 
 const InputModeTextField = styled(TextField)({
   minWidth: 270,
