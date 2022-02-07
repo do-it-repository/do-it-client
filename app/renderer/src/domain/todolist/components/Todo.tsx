@@ -31,15 +31,18 @@ export default function Todo(): JSX.Element {
     ],
   })
 
-  const onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      setTodoList(todoList.concat(newTodo))
-    }
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNewTodo({ ...newTodo, id: todoList.length + 1, plan: e.target.value })
   }
+
+  function EnterFunc() {
+    setTodoList(todoList.concat(newTodo))
+  }
+
   return (
     <Box>
       <AddTodoButtonWrapper>
-        <TodoAddButton onEnter={onEnter} />
+        <TodoAddButton EnterFunc={EnterFunc} onChange={onChange} />
       </AddTodoButtonWrapper>
       <List>
         <Stack spacing={1}>

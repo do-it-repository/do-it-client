@@ -6,6 +6,7 @@ import { styled } from '@mui/material'
 
 interface InputModeParam {
   onEnter: (e: React.KeyboardEvent<HTMLInputElement>) => void
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   innerRef: any
 }
 
@@ -14,12 +15,14 @@ interface ButtonModeParam {
 }
 
 interface TodoAddButtonParam {
-  onEnter: (e: React.KeyboardEvent<HTMLInputElement>) => void
+  EnterFunc: () => void
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
-const InputMode = ({ onEnter, innerRef }: InputModeParam) => {
+const InputMode = ({ onEnter, onChange, innerRef }: InputModeParam) => {
   return (
     <InputModeTextField
       onKeyDown={onEnter}
+      onChange={onChange}
       ref={innerRef}
       variant="standard"
       placeholder="새로운 플랜을 입력하고 엔터"
@@ -56,7 +59,8 @@ function clickOutside(
 }
 
 export default function TodoAddButton({
-  onEnter,
+  EnterFunc,
+  onChange,
 }: TodoAddButtonParam): JSX.Element {
   const [inputMode, setInputMode] = useState<boolean>(false)
   const wrapperRef = useRef(null)
@@ -64,10 +68,18 @@ export default function TodoAddButton({
     setInputMode(!inputMode)
   }
 
+  const onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      EnterFunc()
+    }
+  }
+
   clickOutside(setInputMode, wrapperRef)
 
   if (inputMode === true) {
-    return <InputMode onEnter={onEnter} innerRef={wrapperRef} />
+    return (
+      <InputMode onEnter={onEnter} onChange={onChange} innerRef={wrapperRef} />
+    )
   }
   return <ButtonMode onClick={onClick} />
 }
