@@ -34,10 +34,10 @@ export default function Todo(): JSX.Element {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
     setNewTodo({ ...newTodo, plan: e.target.value })
+    console.log('너냐')
   }
 
   const onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    e.preventDefault()
     if (e.key === 'Enter') {
       setNewTodo({ ...newTodo, id: todoList.length + 1 })
       setTodoList(todoList.concat(newTodo))
