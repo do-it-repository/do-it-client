@@ -3,23 +3,12 @@ import { IconButton } from '@mui/material'
 import { Box, TextField } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 import { styled } from '@mui/material'
+import {
+  InputModeParam,
+  ButtonModeParam,
+  TodoAddButtonParam,
+} from '../../types'
 
-interface InputModeParam {
-  onEnter: (e: React.KeyboardEvent<HTMLInputElement>) => void
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  newTodo: any
-  innerRef: any
-}
-
-interface ButtonModeParam {
-  onClick: (e: React.MouseEvent<HTMLInputElement>) => void
-}
-
-interface TodoAddButtonParam {
-  onEnter: (e: React.KeyboardEvent<HTMLInputElement>) => void
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  newTodo: any
-}
 const InputMode = ({
   onEnter,
   onChange,

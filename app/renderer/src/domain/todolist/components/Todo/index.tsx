@@ -5,7 +5,7 @@ import Badge, { BadgeProps } from '@mui/material/Badge'
 import { styled } from '@mui/material'
 
 import { TodoPropType, PrimaryPropType } from '../../types'
-import SubTodo from '../SubTodo'
+import SubTodo from './SubTodo'
 
 const Primary = ({
   durationHour,
