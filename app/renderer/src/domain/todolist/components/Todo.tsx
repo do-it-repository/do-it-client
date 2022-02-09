@@ -28,7 +28,11 @@ export default function Todo(): JSX.Element {
   return (
     <Box>
       <AddTodoButtonWrapper>
-        <TodoAddButton onEnter={onEnter} onChange={onChange} />
+        <TodoAddButton
+          onEnter={onEnter}
+          onChange={onChange}
+          newTodo={newTodo}
+        />
       </AddTodoButtonWrapper>
       <List>
         <Stack spacing={1}>
