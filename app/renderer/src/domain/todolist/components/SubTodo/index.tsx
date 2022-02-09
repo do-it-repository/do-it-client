@@ -1,14 +1,9 @@
 import React from 'react'
-import { SubTodoType } from '../type'
+import { SubTodoType, SubTodoPropType } from '../../types'
 import { Box, ListItem, ListItemText } from '@mui/material'
 import { Divider } from '@mui/material'
-interface SubTodoListPropType {
-  subTodoList: SubTodoType[]
-}
 
-export default function ShowSubTodoList({
-  subTodoList,
-}: SubTodoListPropType): JSX.Element {
+export default function SubTodo({ subTodoList }: SubTodoPropType): JSX.Element {
   return (
     <Box sx={{ marginTop: 3 }}>
       {subTodoList.map((subTodo) => {

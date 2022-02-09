@@ -1,14 +1,64 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
+import { Stack, List } from '@mui/material'
 import { styled } from '@mui/material/styles'
-import Todo from '../components/Todo'
 
-export default function ToDoList() {
+import { defaultTodoList, defaultNewTodo } from '../constants'
+import TodoType from '../types'
+
+import Todo from '../components/Todo'
+import TodoAddButton from '../components/Todo/TodoAddButton'
+
+const TodoView = (): JSX.Element => {
+  const [todoList, setTodoList] = useState<TodoType[]>(defaultTodoList)
+  const [newTodo, setNewTodo] = useState<TodoType>(defaultNewTodo)
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault()
+    setNewTodo({ ...newTodo, plan: e.target.value })
+  }
+
+  const onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      setNewTodo({ ...newTodo, id: todoList.length + 1 })
+      setTodoList(todoList.concat(newTodo))
+      setNewTodo(defaultNewTodo)
+    }
+  }
+
+  return (
+    <Box>
+      <AddTodoButtonWrapper>
+        <TodoAddButton
+          onEnter={onEnter}
+          onChange={onChange}
+          newTodo={newTodo}
+        />
+      </AddTodoButtonWrapper>
+      <List>
+        <Stack spacing={1}>
+          {todoList.map((todo) => (
+            <Todo todo={todo} key={todo.id} />
+          ))}
+        </Stack>
+      </List>
+    </Box>
+  )
+}
+
+const AddTodoButtonWrapper = styled(Box)({
+  display: 'flex',
+  flexFlow: 'row wrap',
+  justifyContent: 'space-around',
+  alignItems: 'right',
+})
+
+export default function TodoPlanner() {
   return (
     <WallPaper>
       <WidgetTodoList>
-        <Todo />
+        <TodoView />
       </WidgetTodoList>
     </WallPaper>
   )

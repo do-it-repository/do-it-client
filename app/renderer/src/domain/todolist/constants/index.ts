@@ -1,5 +1,4 @@
-import TodoType, { SubTodoType } from './type'
-
+import TodoType, { SubTodoType } from '../types'
 export const defaultNewTodo: TodoType = {
   id: 0,
   plan: '',

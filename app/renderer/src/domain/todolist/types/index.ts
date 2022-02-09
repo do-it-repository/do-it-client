@@ -1,3 +1,5 @@
+/*  */
+
 export interface SubTodoType {
   id: number
   plan: string
@@ -18,3 +20,26 @@ export default interface TodoType {
   detailedText?: string
   subTodoList: SubTodoType[]
 }
+
+/*  */
+
+export interface TodoPropType {
+  todo: TodoType
+}
+
+export interface PrimaryPropType {
+  durationHour: number
+  category: {
+    name: string
+    emoji: string
+  }
+  plan: string
+}
+
+/*  */
+
+export interface SubTodoPropType {
+  subTodoList: SubTodoType[]
+}
+
+/* */

@@ -1,11 +1,12 @@
 import React from 'react'
-import ToDoList from './domain/todolist/screens/ToDoListPlanner'
+import TodoPlanner from './domain/todolist/pages/TodoPlanner'
 import { Box } from '@mui/material'
 
 export default function App() {
   return (
     <Box>
-      <ToDoList />
+      {/* MandalartPlanner */}
+      <TodoPlanner />
     </Box>
   )
 }
