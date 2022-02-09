@@ -1,29 +1,47 @@
-import React from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Box } from '@mui/material'
 import { List, ListItemText, Divider } from '@mui/material'
 import Badge, { BadgeProps } from '@mui/material/Badge'
+
+import { TextField } from '@mui/material'
+
 import { styled } from '@mui/material'
 
 import { TodoPropType, PrimaryPropType } from '../../types'
-import SubTodo from './SubTodo'
+import { SubTodoPropType } from '../../types'
 
-const Primary = ({
-  durationHour,
-  category,
-  plan,
-}: PrimaryPropType): JSX.Element => {
+const SubTodo = ({ subTodoList }: SubTodoPropType): JSX.Element => {
   return (
-    <Box>
-      <StyledBadge badgeContent={`${durationHour}시간`} color="primary">
-        {`${category.name}${category.emoji}`}
-      </StyledBadge>
-      <Box sx={{ marginTop: 1 }}>{plan}</Box>
+    <Box sx={{ marginTop: 3 }}>
+      {subTodoList.map((subTodo) => {
+        const { id, plan, progress } = subTodo
+        return (
+          <Box key={id}>
+            <p>{plan}</p>
+          </Box>
+        )
+      })}
     </Box>
   )
 }
 
 export default function Todo({ todo }: TodoPropType): JSX.Element {
   const { id, plan, category, durationHour, detailedText, subTodoList } = todo
+
+  const Primary = ({
+    durationHour,
+    category,
+    plan,
+  }: PrimaryPropType): JSX.Element => {
+    return (
+      <Box>
+        <StyledBadge badgeContent={`${durationHour}시간`} color="primary">
+          {`${category.name}${category.emoji}`}
+        </StyledBadge>
+        <Box sx={{ marginTop: 1 }}>{plan}</Box>
+      </Box>
+    )
+  }
 
   return (
     <Box>
@@ -54,3 +72,9 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
     padding: '0 4px',
   },
 }))
+
+const InputModeTextField = styled(TextField)({
+  minWidth: 270,
+  marginTop: 1,
+  marginLeft: 22,
+})

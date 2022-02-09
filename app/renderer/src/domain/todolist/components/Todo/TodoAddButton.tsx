@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useRef, ReactText } from 'react'
-import { IconButton } from '@mui/material'
-import { Box, TextField } from '@mui/material'
+import React, { useState, useRef, useEffect } from 'react'
+import { Box, IconButton, TextField } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
-import { styled } from '@mui/material'
+import { SubTodoType } from '../../types'
+import { styled } from '@mui/material/styles'
+
 import {
   InputModeParam,
   ButtonModeParam,

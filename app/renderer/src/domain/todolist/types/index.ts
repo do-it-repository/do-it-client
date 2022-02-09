@@ -1,4 +1,4 @@
-/*  */
+/* Todo 및 SubTodo 최소단위 객체정의 */
 
 export interface SubTodoType {
   id: number
@@ -42,7 +42,7 @@ export interface SubTodoPropType {
   subTodoList: SubTodoType[]
 }
 
-/*  /components/Todo/TodoAddButton 관련 types */
+/*  TodoAddButton 관련 types */
 
 export interface InputModeParam {
   onEnter: (e: React.KeyboardEvent<HTMLInputElement>) => void
