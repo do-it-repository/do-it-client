@@ -1,80 +1,53 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { Box } from '@mui/material'
-import { List, ListItemText, Divider } from '@mui/material'
-import Badge, { BadgeProps } from '@mui/material/Badge'
+import React, { useState } from 'react'
+import { Box, List, Stack } from '@mui/material'
+import { styled } from '@mui/material/styles'
 
-import { TextField } from '@mui/material'
+import { defaultTodoList, defaultNewTodo } from '../../constants'
+import TodoType from '../../types'
 
-import { styled } from '@mui/material'
+import Todo from './Todo'
+import TodoAddButton from './TodoAddButton'
 
-import { TodoPropType, PrimaryPropType } from '../../types'
-import { SubTodoPropType } from '../../types'
+export default function TodoIndex(): JSX.Element {
+  const [todoList, setTodoList] = useState<TodoType[]>(defaultTodoList)
+  const [newTodo, setNewTodo] = useState<TodoType>(defaultNewTodo)
 
-const SubTodo = ({ subTodoList }: SubTodoPropType): JSX.Element => {
-  return (
-    <Box sx={{ marginTop: 3 }}>
-      {subTodoList.map((subTodo) => {
-        const { id, plan, progress } = subTodo
-        return (
-          <Box key={id}>
-            <p>{plan}</p>
-          </Box>
-        )
-      })}
-    </Box>
-  )
-}
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault()
+    setNewTodo({ ...newTodo, plan: e.target.value })
+  }
 
-export default function Todo({ todo }: TodoPropType): JSX.Element {
-  const { id, plan, category, durationHour, detailedText, subTodoList } = todo
-
-  const Primary = ({
-    durationHour,
-    category,
-    plan,
-  }: PrimaryPropType): JSX.Element => {
-    return (
-      <Box>
-        <StyledBadge badgeContent={`${durationHour}시간`} color="primary">
-          {`${category.name}${category.emoji}`}
-        </StyledBadge>
-        <Box sx={{ marginTop: 1 }}>{plan}</Box>
-      </Box>
-    )
+  const onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      setNewTodo({ ...newTodo, id: todoList.length + 1 })
+      setTodoList(todoList.concat(newTodo))
+      setNewTodo(defaultNewTodo)
+    }
   }
 
   return (
     <Box>
-      <List>
-        <ListItemText
-          sx={{ marginTop: 3 }}
-          primary={
-            <Primary
-              durationHour={durationHour}
-              category={category}
-              plan={plan}
-            />
-          }
+      <AddTodoButtonWrapper>
+        <TodoAddButton
+          onEnter={onEnter}
+          onChange={onChange}
+          newTodo={newTodo}
         />
-
-        <SubTodo subTodoList={subTodoList} />
+      </AddTodoButtonWrapper>
+      <List>
+        <Stack spacing={1}>
+          {todoList.map((todo) => (
+            <Todo todo={todo} key={todo.id} />
+          ))}
+        </Stack>
       </List>
-      <Divider component="li" />
     </Box>
   )
 }
 
-const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
-  '& .MuiBadge-badge': {
-    right: -30,
-    top: 10,
-    border: `2px solid ${theme.palette.background.paper}`,
-    padding: '0 4px',
-  },
-}))
-
-const InputModeTextField = styled(TextField)({
-  minWidth: 270,
-  marginTop: 1,
-  marginLeft: 22,
+const AddTodoButtonWrapper = styled(Box)({
+  display: 'flex',
+  flexFlow: 'row wrap',
+  justifyContent: 'space-around',
+  alignItems: 'right',
 })
