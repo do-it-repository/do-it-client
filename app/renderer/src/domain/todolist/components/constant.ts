@@ -1,5 +1,26 @@
 import TodoType, { SubTodoType } from './type'
 
+export const defaultNewTodo: TodoType = {
+  id: 0,
+  plan: '',
+  category: {
+    emoji: 'default',
+    name: 'default',
+  },
+  durationHour: 0,
+  detailedText: 'default',
+  subTodoList: [
+    {
+      id: 0,
+      plan: '',
+      progress: {
+        percentage: 0,
+        done: false,
+      },
+    },
+  ],
+}
+
 const defaultSubTodoList: SubTodoType[] = [
   {
     id: 1,
