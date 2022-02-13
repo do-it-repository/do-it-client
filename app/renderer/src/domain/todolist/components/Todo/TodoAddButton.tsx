@@ -4,7 +4,7 @@ import AddIcon from '@mui/icons-material/Add'
 import TodoType, { SubTodoType } from '../../types'
 import { styled } from '@mui/material/styles'
 
-import { useRecoilValue } from 'recoil'
+import { useRecoilState } from 'recoil'
 
 import {
   InputModeParam,
@@ -12,10 +12,30 @@ import {
   TodoAddButtonParam,
 } from '../../types'
 
-import { newPlanState } from '../../../../common/atom/state'
+import {
+  newPlanState,
+  newTodoState,
+  todoListState,
+} from '../../../../common/atom/state'
 
-const InputMode = ({ onEnter, onChange, innerRef }: InputModeParam) => {
-  const newPlan = useRecoilValue<string>(newPlanState)
+const InputMode = ({ innerRef }: InputModeParam) => {
+  const [newPlan, setNewPlan] = useRecoilState<string>(newPlanState)
+  const [newTodo, setNewTodo] = useRecoilState<TodoType>(newTodoState)
+  const [todoList, setTodoList] = useRecoilState<TodoType[]>(todoListState)
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault()
+    setNewPlan(e.target.value)
+    setNewTodo({ ...newTodo, plan: newPlan })
+  }
+
+  const onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      setNewTodo({ ...newTodo, id: todoList.length + 1 })
+      setTodoList(todoList.concat(newTodo))
+      setNewPlan('')
+    }
+  }
 
   return (
     <InputModeTextField
@@ -57,10 +77,7 @@ function clickOutside(
   }, [ref])
 }
 
-export default function TodoAddButton({
-  onEnter,
-  onChange,
-}: TodoAddButtonParam): JSX.Element {
+export default function TodoAddButton({}: TodoAddButtonParam): JSX.Element {
   const [inputMode, setInputMode] = useState<boolean>(false)
   const wrapperRef = useRef(null)
   const onClick = (e: React.MouseEvent<HTMLInputElement>) => {
@@ -70,9 +87,7 @@ export default function TodoAddButton({
   clickOutside(setInputMode, wrapperRef)
 
   if (inputMode === true) {
-    return (
-      <InputMode onEnter={onEnter} onChange={onChange} innerRef={wrapperRef} />
-    )
+    return <InputMode innerRef={wrapperRef} />
   }
   return <ButtonMode onClick={onClick} />
 }
