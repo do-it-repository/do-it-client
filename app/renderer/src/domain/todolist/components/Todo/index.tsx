@@ -8,8 +8,13 @@ import TodoType from '../../types'
 import Todo from './Todo'
 import TodoAddButton from './TodoAddButton'
 
+import { todoState } from '../../../../common/atom/state'
+import { useRecoilState } from 'recoil'
+
 export default function TodoIndex(): JSX.Element {
-  const [todoList, setTodoList] = useState<TodoType[]>(defaultTodoList)
+  // const [todoList, setTodoList] = useState<TodoType[]>(defaultTodoList)
+  const [todoList, setTodoList] = useRecoilState<TodoType[]>(todoState)
+
   const [newTodo, setNewTodo] = useState<TodoType>(defaultNewTodo)
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
