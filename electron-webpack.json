@@ -8,5 +8,6 @@
     "template": "app/renderer/index.html"
   },
   "commonSourceDirectory": "app/common",
-  "staticSourceDirectory": "app/static"
+  "staticSourceDirectory": "app/static",
+  "whiteListedModules": ["recoil"]
 }

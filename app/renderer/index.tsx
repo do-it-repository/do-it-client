@@ -4,13 +4,16 @@ import ReactDOM from 'react-dom'
 
 import App from './src'
 import { theme } from './styles/theme'
+import { RecoilRoot } from 'recoil'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
-  </React.StrictMode>,
+  <RecoilRoot>
+    <React.StrictMode>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+    </React.StrictMode>
+  </RecoilRoot>,
   document.getElementById('root'),
 )
 
