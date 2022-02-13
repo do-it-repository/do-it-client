@@ -47,7 +47,6 @@ export interface SubTodoPropType {
 export interface InputModeParam {
   onEnter: (e: React.KeyboardEvent<HTMLInputElement>) => void
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  newTodo: any
   innerRef: any
 }
 
@@ -58,5 +57,4 @@ export interface ButtonModeParam {
 export interface TodoAddButtonParam {
   onEnter: (e: React.KeyboardEvent<HTMLInputElement>) => void
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  newTodo: any
 }

@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Box, IconButton, TextField } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
-import { SubTodoType } from '../../types'
+import TodoType, { SubTodoType } from '../../types'
 import { styled } from '@mui/material/styles'
+
+import { useRecoilValue } from 'recoil'
 
 import {
   InputModeParam,
@@ -10,18 +12,16 @@ import {
   TodoAddButtonParam,
 } from '../../types'
 
-const InputMode = ({
-  onEnter,
-  onChange,
-  newTodo,
-  innerRef,
-}: InputModeParam) => {
-  const newTodoPlan = newTodo.plan
+import { newPlanState } from '../../../../common/atom/state'
+
+const InputMode = ({ onEnter, onChange, innerRef }: InputModeParam) => {
+  const newPlan = useRecoilValue<string>(newPlanState)
+
   return (
     <InputModeTextField
       onKeyDown={onEnter}
       onChange={onChange}
-      value={newTodoPlan}
+      value={newPlan}
       ref={innerRef}
       variant="standard"
       placeholder="새로운 플랜을 입력하고 엔터"
@@ -60,7 +60,6 @@ function clickOutside(
 export default function TodoAddButton({
   onEnter,
   onChange,
-  newTodo,
 }: TodoAddButtonParam): JSX.Element {
   const [inputMode, setInputMode] = useState<boolean>(false)
   const wrapperRef = useRef(null)
@@ -72,12 +71,7 @@ export default function TodoAddButton({
 
   if (inputMode === true) {
     return (
-      <InputMode
-        onEnter={onEnter}
-        onChange={onChange}
-        newTodo={newTodo}
-        innerRef={wrapperRef}
-      />
+      <InputMode onEnter={onEnter} onChange={onChange} innerRef={wrapperRef} />
     )
   }
   return <ButtonMode onClick={onClick} />

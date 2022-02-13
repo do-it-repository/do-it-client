@@ -8,36 +8,36 @@ import TodoType from '../../types'
 import Todo from './Todo'
 import TodoAddButton from './TodoAddButton'
 
-import { todoState } from '../../../../common/atom/state'
+import {
+  todoListState,
+  newTodoState,
+  newPlanState,
+} from '../../../../common/atom/state'
 import { useRecoilState } from 'recoil'
 
 export default function TodoIndex(): JSX.Element {
-  // const [todoList, setTodoList] = useState<TodoType[]>(defaultTodoList)
-  const [todoList, setTodoList] = useRecoilState<TodoType[]>(todoState)
-
-  const [newTodo, setNewTodo] = useState<TodoType>(defaultNewTodo)
+  const [todoList, setTodoList] = useRecoilState<TodoType[]>(todoListState)
+  const [newTodo, setNewTodo] = useRecoilState<TodoType>(newTodoState)
+  const [newPlan, setNewPlan] = useRecoilState<string>(newPlanState)
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
-    setNewTodo({ ...newTodo, plan: e.target.value })
+    setNewPlan(e.target.value)
+    setNewTodo({ ...newTodo, plan: newPlan })
   }
 
   const onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       setNewTodo({ ...newTodo, id: todoList.length + 1 })
       setTodoList(todoList.concat(newTodo))
-      setNewTodo(defaultNewTodo)
+      setNewPlan('')
     }
   }
 
   return (
     <Box>
       <AddTodoButtonWrapper>
-        <TodoAddButton
-          onEnter={onEnter}
-          onChange={onChange}
-          newTodo={newTodo}
-        />
+        <TodoAddButton onEnter={onEnter} onChange={onChange} />
       </AddTodoButtonWrapper>
       <List>
         <Stack spacing={1}>
