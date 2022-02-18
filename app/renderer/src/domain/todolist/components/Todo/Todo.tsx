@@ -4,9 +4,10 @@ import { List, ListItemText, Divider } from '@mui/material'
 import Badge, { BadgeProps } from '@mui/material/Badge'
 import { styled } from '@mui/material'
 
-import QuickDial from '../../../../common/components/QuickDial'
+import BasicSpeedDial from '../../../../common/components/BasicSpeedDial'
 
 import { TodoPropType, PrimaryPropType, SubTodoPropType } from '../../types'
+import { fontWeight } from '@mui/system'
 
 const SubTodo = ({ subTodoList }: SubTodoPropType): JSX.Element => {
   return (
@@ -34,9 +35,12 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
     return (
       <Box>
         <StyledBadge badgeContent={`${durationHour}시간`} color="primary">
-          {`${category.name}${category.emoji}`}
+          <InlineBox sx={{ fontWeight: 'bold' }}>
+            {`${category.name}`}
+          </InlineBox>
+          <InlineBox>{`${category.emoji}`}</InlineBox>
         </StyledBadge>
-        <Box sx={{ marginTop: 1 }}>{plan}</Box>
+        <Box sx={{ marginTop: 1, fontWeight: 'bold' }}>{plan}</Box>
       </Box>
     )
   }
@@ -70,3 +74,7 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
     padding: '0 4px',
   },
 }))
+
+const InlineBox = styled(Box)({
+  display: 'inline',
+})
