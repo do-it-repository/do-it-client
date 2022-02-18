@@ -24,9 +24,8 @@ const InputMode = ({ innerRef }: InputModeParam) => {
   const [todoList, setTodoList] = useRecoilState<TodoType[]>(todoListState)
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault()
     setNewPlan(e.target.value)
-    setNewTodo({ ...newTodo, plan: newPlan })
+    setNewTodo({ ...newTodo, plan: e.target.value })
   }
 
   const onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -34,6 +33,7 @@ const InputMode = ({ innerRef }: InputModeParam) => {
       setNewTodo({ ...newTodo, id: todoList.length + 1 })
       setTodoList(todoList.concat(newTodo))
       setNewPlan('')
+      console.log(newPlan)
     }
   }
 

@@ -4,8 +4,9 @@ import { List, ListItemText, Divider } from '@mui/material'
 import Badge, { BadgeProps } from '@mui/material/Badge'
 import { styled } from '@mui/material'
 
-import { TodoPropType, PrimaryPropType } from '../../types'
-import { SubTodoPropType } from '../../types'
+import QuickDial from '../../../../common/components/QuickDial'
+
+import { TodoPropType, PrimaryPropType, SubTodoPropType } from '../../types'
 
 const SubTodo = ({ subTodoList }: SubTodoPropType): JSX.Element => {
   return (
