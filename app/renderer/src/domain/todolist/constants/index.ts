@@ -3,8 +3,8 @@ export const defaultNewTodo: TodoType = {
   id: 0,
   plan: '',
   category: {
-    emoji: 'default',
-    name: 'default',
+    emoji: '👀',
+    name: 'Default',
   },
   durationHour: 0,
   detailedText: 'default',
