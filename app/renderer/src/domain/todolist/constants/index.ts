@@ -1,13 +1,12 @@
 import TodoType, { SubTodoType } from '../types'
 export const defaultNewTodo: TodoType = {
-  id: 0,
+  id: 4,
   plan: '',
   category: {
     emoji: '👀',
     name: 'Category',
   },
   durationHour: 0,
-  detailedText: 'default',
   subTodoList: [
     {
       id: 0,
@@ -56,7 +55,6 @@ export const defaultTodoList: TodoType[] = [
       name: 'Dev',
     },
     durationHour: 1,
-    detailedText: '리덕스와의 차이점 및 사용법 조사하기',
     subTodoList: defaultSubTodoList,
   },
   {
@@ -67,7 +65,6 @@ export const defaultTodoList: TodoType[] = [
       name: 'Univ',
     },
     durationHour: 2,
-    detailedText: 'Confusion Matrix 의 정확도,정밀도,재현율 계산법 복습',
     subTodoList: defaultSubTodoList,
   },
   {
@@ -78,7 +75,6 @@ export const defaultTodoList: TodoType[] = [
       name: 'Work out',
     },
     durationHour: 2,
-    detailedText: '삼두 루틴 15회 4세트',
     subTodoList: defaultSubTodoList,
   },
 ]

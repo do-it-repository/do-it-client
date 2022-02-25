@@ -17,7 +17,6 @@ export default interface TodoType {
     name: string
   }
   durationHour: number
-  detailedText?: string
   subTodoList: SubTodoType[]
 }
 
