@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Box } from '@mui/material'
-import { List, ListItemText, Divider, TextField ,Tooltip } from '@mui/material'
+import { List, ListItemText, Divider, TextField ,Tooltip, Checkbox } from '@mui/material'
 import Badge, { BadgeProps } from '@mui/material/Badge'
 import NativeSelect from '@mui/material/NativeSelect'
 import { styled } from '@mui/material'
@@ -21,7 +21,8 @@ const SubTodo = ({ subTodoList }: SubTodoPropType): JSX.Element => {
         const { id, plan, progress } = subTodo
         return (
           <Box key={id}>
-            <p>{plan}</p>
+            <Checkbox color='secondary' />
+            <Box sx={{display:'inline'}}>{plan}</Box>
           </Box>
         )
       })}
