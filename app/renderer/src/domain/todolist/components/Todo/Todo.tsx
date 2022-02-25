@@ -30,9 +30,15 @@ const SubTodo = ({ subTodoList }: SubTodoPropType): JSX.Element => {
 }
 
 export default function Todo({ todo }: TodoPropType): JSX.Element {
+  const { id, plan, category, durationHour, detailedText, subTodoList } = todo
   
-  const Category = () => {
+  const Category = ():JSX.Element => {
     const wrapperRef = useRef(null)
+    const [isActive,setIsActive] = useState<boolean>(false)
+
+    const onClickCat = (e: React.MouseEvent<HTMLInputElement>) => (
+      setIsActive(!isActive)
+    )
 
     function clickOutside(
       setIsActive: React.Dispatch<React.SetStateAction<boolean>>,
@@ -50,12 +56,6 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
         }
       }, [ref])
     }
-
-    const [isActive,setIsActive] = useState<boolean>(false)
-    
-    const onClickCat = (e: React.MouseEvent<HTMLInputElement>) => (
-      setIsActive(!isActive)
-    )
 
     clickOutside(setIsActive,wrapperRef)
 
@@ -82,28 +82,14 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
     )
   }
 
-/*   const Hour = () => {
-    const [isActive,setIsActive] = useState<boolean>(false)
-
-    const onClickHour = (e: React.MouseEvent<HTMLInputElement>) => (
-      setIsActive(!isActive)
-    )
-    if (isActive === true) 
-    return (
-        <TextField size='small'/>
-            )
-    return (
-    <StyledBadge onClick={onClickHour} badgeContent={`${durationHour}시간`} color="primary">
-      
-    </StyledBadge>
-    )
-  }
- */
-  const { id, plan, category, durationHour, detailedText, subTodoList } = todo
-
+  
   const MainPlan = ():JSX.Element => {
-
+    const [isActive,setIsActive] = useState<boolean>(false)
     const wrapperRef = useRef(null)
+
+    const onDbClickPlan = (e:React.MouseEvent<HTMLInputElement>) => {
+      setIsActive(!isActive)
+    }
 
     function clickOutside(
       setIsActive: React.Dispatch<React.SetStateAction<boolean>>,
@@ -122,18 +108,11 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
       }, [ref])
     }
 
-
-    const [isActive,setIsActive] = useState<boolean>(false)
-
     clickOutside(setIsActive,wrapperRef)
-
-    const onDbClickPlan = (e:React.MouseEvent<HTMLInputElement>) => {
-      setIsActive(!isActive)
-    }
     
     if (isActive === true) {
       return(
-      <TextField ref={wrapperRef} size='small' autoFocus={true} value={plan} placeholder='Type your main plan'/>
+      <TextField variant="standard" ref={wrapperRef} size='small' autoFocus={true} value={plan} placeholder='Type your main plan'/>
       )
       }
 
@@ -145,7 +124,7 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
   const Primary = ({
     durationHour,
     category,
-    plan,
+    plan, 
   }: PrimaryPropType): JSX.Element => {
 
     return (
