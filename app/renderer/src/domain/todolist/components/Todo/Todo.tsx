@@ -12,34 +12,40 @@ import BasicSpeedDial from '../../../../common/components/BasicSpeedDial'
 import TodoType, { TodoPropType, PrimaryPropType, SubTodoPropType } from '../../types'
 import { fontWeight } from '@mui/system'
 
+const SubTodo = ({subTodo, todo}: any) => {
+  const { id, plan, progress } = subTodo
+/*   const subId = id
+  const [todoList,setTodoList] = useRecoilState(todoListState)
+   */
+/*   const onCheckedTest = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setTodoList(
+        todoList.map(currTodo => {
+          if (currTodo.id === id) {
+          currTodo.subTodoList.map(currSub => {
+            return(
+            currSub.id === subId ? {...currTodo, plan: '엥?'} : currTodo
+            )})}
 
+          return (currTodo)
+        }))}
+ */
 
-const SubTodo = ({ subTodoList }: SubTodoPropType): JSX.Element => {
-  return (
-    <Box sx={{ marginTop: 3 }}>
-      {subTodoList.map((subTodo) => {
-        const { id, plan, progress } = subTodo
-        const [isDone, setIsDone] = useState(`${plan}${false}`)
+  const [isDone,setIsDone] = useState(progress.isDone)
 
-          const onChecked = (e:React.ChangeEvent<HTMLInputElement>) => {
-            setIsDone(`${plan}${e.target.checked}`);
-            console.log(isDone)
+          const onChecked = (e:React.ChangeEvent<HTMLInputElement>) => { 
+            setIsDone(!isDone)
           }
+          return (
+            <Box >
+              <Checkbox color='secondary' onChange={onChecked} />
+              <Box sx={{display:'inline'}}>{plan}</Box>
+            </Box>
+          )
+        }
 
-        return (
-          <Box key={id}>
-            <Checkbox color='secondary' onChange={onChecked} />
-            <Box sx={{display:'inline'}}>{plan}</Box>
-          </Box>
-        )
-      })}
-    </Box>
-  )
-}
 
 export default function Todo({ todo }: TodoPropType): JSX.Element {
   const { id, plan, category, durationHour, subTodoList } = todo
-  
 
   const Category = ():JSX.Element => {
     const wrapperRef = useRef(null)
@@ -96,6 +102,7 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
     const [newPlan,setNewPlan] = useState<string>(plan)
     const [modTodo,setModTodo] = useState<TodoType>(todo)
     const [todoList,setTodoList] = useRecoilState(todoListState)
+    console.log(todoList)
 
     const [isActive,setIsActive] = useState<boolean>(false)
     const wrapperRef = useRef(null)
@@ -111,6 +118,7 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
           todoList.map(currTodo =>
             currTodo.id === id ? {...currTodo, plan: newPlan } : currTodo )
           )
+          console.log(todoList)
       }
     }
 
@@ -182,8 +190,12 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
             />
           }
         />
+        <Box sx={{ marginTop: 3 }}>
+          {subTodoList.map((subTodo) => 
+            ( <SubTodo subTodo={subTodo} todo={todo} key={subTodo.id}/> )  
+      )}
 
-        <SubTodo subTodoList={subTodoList} />
+    </Box>
       </List>
       <Divider component="li" />
     </Box>

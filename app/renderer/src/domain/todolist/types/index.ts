@@ -5,7 +5,7 @@ export interface SubTodoType {
   plan: string
   progress: {
     percentage: number
-    done: boolean
+    isDone: boolean
   }
 }
 

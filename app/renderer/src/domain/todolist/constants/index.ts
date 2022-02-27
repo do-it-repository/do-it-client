@@ -1,6 +1,7 @@
 import TodoType, { SubTodoType } from '../types'
+
 export const defaultNewTodo: TodoType = {
-  id: 4,
+  id: 0 ,
   plan: '',
   category: {
     emoji: '👀',
@@ -9,23 +10,23 @@ export const defaultNewTodo: TodoType = {
   durationHour: 0,
   subTodoList: [
     {
-      id: 0,
+      id: 1,
       plan: '',
       progress: {
         percentage: 0,
-        done: false,
+        isDone: false,
       },
     },
   ],
 }
 
-const defaultSubTodoList: SubTodoType[] = [
+export const defaultSubTodoList: SubTodoType[] = [
   {
     id: 1,
     plan: '리덕스와의 차이점 조사하기',
     progress: {
       percentage: 0,
-      done: false,
+      isDone: false,
     },
   },
   {
@@ -33,7 +34,7 @@ const defaultSubTodoList: SubTodoType[] = [
     plan: '리덕스 툴킷 함수 사용법 공부하기',
     progress: {
       percentage: 0,
-      done: false,
+      isDone: false,
     },
   },
   {
@@ -41,7 +42,7 @@ const defaultSubTodoList: SubTodoType[] = [
     plan: '현 프로젝트에 리덕스 툴킷 도입하기',
     progress: {
       percentage: 0,
-      done: false,
+      isDone: false,
     },
   },
 ]
