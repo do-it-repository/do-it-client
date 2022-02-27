@@ -61,7 +61,7 @@ export const defaultTodoList: TodoType[] = [
     id: 2,
     plan: '머신러닝 복습',
     category: {
-      emoji: '📚',
+      emoji: '📖',
       name: 'Univ',
     },
     durationHour: 2,
@@ -71,7 +71,7 @@ export const defaultTodoList: TodoType[] = [
     id: 3,
     plan: '삼두 하는날 ',
     category: {
-      emoji: '🏃',
+      emoji: '💪',
       name: 'Work out',
     },
     durationHour: 2,

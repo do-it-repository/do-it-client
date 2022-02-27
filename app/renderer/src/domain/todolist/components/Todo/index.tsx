@@ -16,7 +16,7 @@ export default function TodoIndex(): JSX.Element {
 
   return (
     <Box>
-      <AddTodoButtonWrapper>
+      <AddTodoButtonWrapper >
         <TodoAddButton />
       </AddTodoButtonWrapper>
       <List>
@@ -31,6 +31,8 @@ export default function TodoIndex(): JSX.Element {
 }
 
 const AddTodoButtonWrapper = styled(Box)({
+  position: 'sticky',
+  top: 0,
   display: 'flex',
   flexFlow: 'row wrap',
   justifyContent: 'space-around',

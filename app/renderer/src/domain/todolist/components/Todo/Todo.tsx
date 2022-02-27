@@ -19,9 +19,16 @@ const SubTodo = ({ subTodoList }: SubTodoPropType): JSX.Element => {
     <Box sx={{ marginTop: 3 }}>
       {subTodoList.map((subTodo) => {
         const { id, plan, progress } = subTodo
+        const [isDone, setIsDone] = useState(`${plan}${false}`)
+
+          const onChecked = (e:React.ChangeEvent<HTMLInputElement>) => {
+            setIsDone(`${plan}${e.target.checked}`);
+            console.log(isDone)
+          }
+
         return (
           <Box key={id}>
-            <Checkbox color='secondary' />
+            <Checkbox color='secondary' onChange={onChecked} />
             <Box sx={{display:'inline'}}>{plan}</Box>
           </Box>
         )
