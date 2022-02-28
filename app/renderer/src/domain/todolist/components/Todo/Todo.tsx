@@ -14,7 +14,6 @@ import { fontWeight } from '@mui/system'
 
 const SubTodo = ({subTodo, todo}: any) => {
   const {plan, isDone } = subTodo
-
   const [todoList,setTodoList] = useRecoilState(todoListState)
    
    const onCheckedIsDone = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,7 +24,7 @@ const SubTodo = ({subTodo, todo}: any) => {
             currSubTodo => {
               if (currSubTodo.id === subTodo.id) {
                 
-                return ({...currSubTodo,isDone:true})
+                return ({...currSubTodo,isDone:!isDone})
               }
               else {return (currSubTodo)}
             }
@@ -40,7 +39,7 @@ const SubTodo = ({subTodo, todo}: any) => {
 
           return (
             <Box >
-              <Checkbox color='secondary' onChange={onCheckedIsDone} />
+              <Checkbox color='secondary' checked={isDone} onChange={onCheckedIsDone} />
               <Box sx={{display:'inline'}}>{plan}</Box>
             </Box>
           )
@@ -168,11 +167,18 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
     category,
     plan, 
   }: PrimaryPropType): JSX.Element => {
-
-    const [isDoneMain,setIsDoneMain] = useState<boolean>(false)
+    
+    const [todoList,setTodoList] = useRecoilState(todoListState)
 
     const onCheckedMain = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setIsDoneMain(!isDoneMain)
+      setTodoList(
+        todoList.map(currTodo => {
+          if (currTodo.id === todo.id) {
+            return ({...currTodo,isDoneMain:!currTodo.isDoneMain})
+          }
+          else {return (currTodo)}
+        })
+      )  
     }
 
     return (
@@ -181,7 +187,7 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
           <Category/>
           </StyledBadge>
         <Box  sx={{ marginTop: 1, fontWeight: 'bold' }}>
-          <Checkbox onChange={onCheckedMain}/>
+          <Checkbox checked={todo.isDoneMain} onChange={onCheckedMain}/>
           <MainPlan />
         </Box>
       </Box>
