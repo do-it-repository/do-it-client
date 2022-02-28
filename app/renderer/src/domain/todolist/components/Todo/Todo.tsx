@@ -9,39 +9,42 @@ import { useRecoilState } from 'recoil'
 import { todoListState,newPlanState, newTodoState } from '../../../../common/atom/state'
 import BasicSpeedDial from '../../../../common/components/BasicSpeedDial'
 
-import TodoType, { TodoPropType, PrimaryPropType, SubTodoPropType } from '../../types'
+import TodoType, { SubTodoType,TodoPropType, PrimaryPropType, SubTodoPropType } from '../../types'
 import { fontWeight } from '@mui/system'
 
 const SubTodo = ({subTodo, todo}: any) => {
-  const { id, plan, progress } = subTodo
-/*   const subId = id
+  const {plan, isDone } = subTodo
+
   const [todoList,setTodoList] = useRecoilState(todoListState)
-   */
-/*   const onCheckedTest = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setTodoList(
-        todoList.map(currTodo => {
-          if (currTodo.id === id) {
-          currTodo.subTodoList.map(currSub => {
-            return(
-            currSub.id === subId ? {...currTodo, plan: '엥?'} : currTodo
-            )})}
+   
+   const onCheckedIsDone = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTodoList(
+      todoList.map(currTodo => {
+        if (currTodo.id === todo.id){
+          const CT:SubTodoType[] = currTodo.subTodoList.map(
+            currSubTodo => {
+              if (currSubTodo.id === subTodo.id) {
+                
+                return ({...currSubTodo,isDone:true})
+              }
+              else {return (currSubTodo)}
+            }
+          )
+          return ({...currTodo,subTodoList:CT})
+        }
+        else {return currTodo}
+      })
+    )
+    console.log(todoList)
+  }
 
-          return (currTodo)
-        }))}
- */
-
-  const [isDone,setIsDone] = useState(progress.isDone)
-
-          const onChecked = (e:React.ChangeEvent<HTMLInputElement>) => { 
-            setIsDone(!isDone)
-          }
           return (
             <Box >
-              <Checkbox color='secondary' onChange={onChecked} />
+              <Checkbox color='secondary' onChange={onCheckedIsDone} />
               <Box sx={{display:'inline'}}>{plan}</Box>
             </Box>
           )
-        }
+}
 
 
 export default function Todo({ todo }: TodoPropType): JSX.Element {
@@ -102,24 +105,25 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
     const [newPlan,setNewPlan] = useState<string>(plan)
     const [modTodo,setModTodo] = useState<TodoType>(todo)
     const [todoList,setTodoList] = useRecoilState(todoListState)
-    console.log(todoList)
 
     const [isActive,setIsActive] = useState<boolean>(false)
     const wrapperRef = useRef(null)
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setNewPlan(e.target.value)
-      setModTodo({... modTodo, plan:e.target.value })
+      setModTodo({...modTodo, plan:e.target.value })
     }
 
     const onEnterUpdate = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      
       if (e.key === 'Enter') {
         setTodoList(
           todoList.map(currTodo =>
-            currTodo.id === id ? {...currTodo, plan: newPlan } : currTodo )
-          )
-          console.log(todoList)
-      }
+            currTodo.id === id ? {...currTodo, plan:newPlan } : currTodo 
+          ))
+        }
+          
+
     }
 
     const onDbClickPlan = (e:React.MouseEvent<HTMLInputElement>) => {
@@ -165,12 +169,19 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
     plan, 
   }: PrimaryPropType): JSX.Element => {
 
+    const [isDoneMain,setIsDoneMain] = useState<boolean>(false)
+
+    const onCheckedMain = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setIsDoneMain(!isDoneMain)
+    }
+
     return (
       <Box>
         <StyledBadge badgeContent={`${durationHour}시간`} color="primary">
           <Category/>
           </StyledBadge>
         <Box  sx={{ marginTop: 1, fontWeight: 'bold' }}>
+          <Checkbox onChange={onCheckedMain}/>
           <MainPlan />
         </Box>
       </Box>

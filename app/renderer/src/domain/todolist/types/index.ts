@@ -3,15 +3,14 @@
 export interface SubTodoType {
   id: number
   plan: string
-  progress: {
-    percentage: number
-    isDone: boolean
+  isDone: boolean
   }
-}
+
 
 export default interface TodoType {
   id: number
   plan: string
+  isDoneMain: boolean
   category: {
     emoji: string
     name: string

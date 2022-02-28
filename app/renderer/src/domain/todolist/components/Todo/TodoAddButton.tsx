@@ -33,7 +33,6 @@ const InputMode = ({ innerRef }: InputModeParam) => {
       setNewTodo({ ...newTodo, id: todoList.length + 1 })
       setTodoList(todoList.concat(newTodo))
       setNewPlan('')
-      console.log(newPlan)
     }
   }
 
