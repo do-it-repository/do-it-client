@@ -15,11 +15,11 @@ import { fontWeight } from '@mui/system'
 const SubTodo = ({subTodo, todo}: any) => {
   const {plan, isDone} = subTodo
   const [todoList,setTodoList] = useRecoilState(todoListState)
-   
+
   useEffect(()=> {
     const isDoneTodoList = todoList.map(currTodo=> 
       {
-      var objMain = {mainId: currTodo.id , SubList: currTodo.subTodoList.map(currSubTodo => {
+      var objMain = {mainId: currTodo.id ,mainDone: currTodo.isDoneMain, SubList: currTodo.subTodoList.map(currSubTodo => {
         var objSub = currSubTodo.isDone
       return objSub}
       )}
@@ -27,7 +27,6 @@ const SubTodo = ({subTodo, todo}: any) => {
     })
 
     const isTrue = (currentValue: boolean) => currentValue === true
-    const isFalse = (currentValue: boolean) => currentValue === false
     for (var isDoneTodo of isDoneTodoList) {
       if ( isDoneTodo.SubList.every(isTrue) === true) {
         setTodoList(todoList.map(currTodo => {
@@ -38,11 +37,9 @@ const SubTodo = ({subTodo, todo}: any) => {
         }
           ))
         console.log(isDoneTodo)
-      
       }
     }
 
-    
   },[isDone])
 
    const onCheckedIsDone = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -201,7 +198,12 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
       setTodoList(
         todoList.map(currTodo => {
           if (currTodo.id === todo.id) {
-            return ({...currTodo,isDoneMain:!currTodo.isDoneMain})
+            if (currTodo.isDoneMain === true) { 
+              const newSTDL = currTodo.subTodoList.map(currSubTodo => {return ({...currSubTodo,isDone:false})})
+              return ({...currTodo,isDoneMain:false,subTodoList:newSTDL})}
+            else { 
+              const newSTDL = currTodo.subTodoList.map(currSubTodo => { return ({...currSubTodo, isDone:true})})
+              return ({...currTodo,isDoneMain:true,subTodoList:newSTDL})}
           }
           else {return (currTodo)}
         })
