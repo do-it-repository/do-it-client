@@ -19,7 +19,7 @@ export default function TodoIndex(): JSX.Element {
       <AddTodoButtonWrapper >
         <TodoAddButton />
       </AddTodoButtonWrapper>
-      <List>
+      <List sx={{ml:1}}>
         <Stack spacing={1}>
           {todoList.map((todo) => (
             <Todo todo={todo} key={todo.id} />
