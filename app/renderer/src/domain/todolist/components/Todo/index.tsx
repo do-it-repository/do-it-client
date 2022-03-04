@@ -31,10 +31,9 @@ export default function TodoIndex(): JSX.Element {
 }
 
 const AddTodoButtonWrapper = styled(Box)({
+  zIndex:2,
   position: 'sticky',
   top: 0,
-  heigth:1000,
-  paddingTop:0,
   backgroundColor:'white',
   display: 'flex',
   flexFlow: 'row wrap',
