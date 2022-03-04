@@ -56,7 +56,7 @@ const WallPaper = styled('div')({
 })
 
 const WidgetTodoList = styled('div')(({ theme }) => ({
-  padding: 16,
+  padding: 0,
   borderRadius: 40,
   width: 650,
   height: 650,

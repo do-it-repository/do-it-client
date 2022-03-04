@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Box, IconButton, TextField } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
+import AddTaskIcon from '@mui/icons-material/AddTask';
 import TodoType, { SubTodoType } from '../../types'
 import { styled } from '@mui/material/styles'
 
@@ -53,7 +54,7 @@ const ButtonMode = ({ onClick }: ButtonModeParam) => {
   return (
     <Box onClick={onClick}>
       <IconButton>
-        <AddIcon />
+        <AddTaskIcon />
       </IconButton>
     </Box>
   )
@@ -93,6 +94,7 @@ export default function TodoAddButton({}: TodoAddButtonParam): JSX.Element {
 
 const InputModeTextField = styled(TextField)({
   minWidth: 270,
-  marginTop: 1,
+  marginTop: 4,
+  marginBottom:4,
   marginLeft: 22,
 })

@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Box } from '@mui/material'
-import { List, ListItemText, Divider, TextField ,Tooltip, Checkbox } from '@mui/material'
+import { IconButton, List, ListItemText, Divider, TextField ,Tooltip, Checkbox } from '@mui/material'
 import Badge, { BadgeProps } from '@mui/material/Badge'
 import NativeSelect from '@mui/material/NativeSelect'
 import { styled } from '@mui/material'
+import AddIcon from '@mui/icons-material/Add';
 
 import { useRecoilState } from 'recoil'
 import { todoListState,newPlanState, newTodoState } from '../../../../common/atom/state'
@@ -13,9 +14,11 @@ import TodoType, { SubTodoType,TodoPropType, PrimaryPropType, SubTodoPropType } 
 import { fontWeight } from '@mui/system'
 
 const SubTodo = ({subTodo, todo}: any) => {
-  const {plan, isDone} = subTodo
+  const {plan, isDone, id} = subTodo
   const [todoList,setTodoList] = useRecoilState(todoListState)
 
+
+  // checkBox isDoneMain <-> isDoneSub 
   useEffect(()=> {
     const isDoneTodoList = todoList.map(currTodo=> 
       {
@@ -27,6 +30,7 @@ const SubTodo = ({subTodo, todo}: any) => {
     })
 
     const isTrue = (currentValue: boolean) => currentValue === true
+    const isFalse = (currentValue: boolean) => currentValue === true
     for (var isDoneTodo of isDoneTodoList) {
       if ( isDoneTodo.SubList.every(isTrue) === true) {
         setTodoList(todoList.map(currTodo => {
@@ -38,6 +42,25 @@ const SubTodo = ({subTodo, todo}: any) => {
           ))
         console.log(isDoneTodo)
       }
+      // subTodo isDoneList 모두 false인 경우 isDoneMain false로 전환
+      else if ( isDoneTodo.SubList.every(isFalse) === true) {
+        setTodoList(todoList.map(currTodo => {
+          if (currTodo.id === isDoneTodo.mainId) {
+            return {...currTodo,isDoneMain:false}
+          }
+          else { return (currTodo)}
+        }))
+      }
+// subTodo isdoneList 중 하나라도 true가 아닐경우 isDoneMain false로 전환 : 오류
+/*       else if ( isDoneTodo.SubList.every(isTrue) === false ) {
+        setTodoList( 
+          todoList.map(currTodo => {
+            if (currTodo.id===isDoneTodo.mainId) {
+              return ({...currTodo,isDoneMain:false})}
+            else { return (currTodo)}
+          })
+        )
+      } */
     }
 
   },[isDone])
@@ -65,6 +88,7 @@ const SubTodo = ({subTodo, todo}: any) => {
             <Box >
               <Checkbox color='secondary' checked={isDone} onChange={onCheckedIsDone} />
               <Box sx={{display:'inline'}}>{plan}</Box>
+              
             </Box>
           )
 }
@@ -102,7 +126,7 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
 
     if (isActive === true) {
       return (
-        <InlineBox ref={wrapperRef}>
+        <InlineBox sx={{ml:1}} ref={wrapperRef}>
             <NativeSelect
               defaultValue={`${category.name}`}
               
@@ -114,7 +138,7 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
     }
     
     return (
-      <InlineBox onClick={onClickCat}>
+      <InlineBox sx={{ml:1}} onClick={onClickCat}>
         <InlineBox sx={{ fontWeight: 'bold' }}>
         {`${category.name}`}
         </InlineBox>
@@ -138,16 +162,13 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
     }
 
     const onEnterUpdate = (e: React.KeyboardEvent<HTMLInputElement>) => {
-      
       if (e.key === 'Enter') {
         setTodoList(
           todoList.map(currTodo =>
             currTodo.id === id ? {...currTodo, plan:newPlan } : currTodo 
           ))
         }
-          
-
-    }
+      }
 
     const onDbClickPlan = (e:React.MouseEvent<HTMLInputElement>) => {
       setIsActive(!isActive)
@@ -176,12 +197,11 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
     if (isActive === true) {
       return(
       <TextField onKeyDown={onEnterUpdate} onChange={onChange} variant="standard" ref={wrapperRef} size='small' autoFocus={true} value={newPlan} placeholder={plan}/>
-      )
-      }
+      )}
 
     return (
       <Tooltip title='수정을 위해 더블클릭' enterDelay={1000}>
-      <InlineBox onDoubleClick={onDbClickPlan} >{plan}</InlineBox>
+      <InlineBox onDoubleClick={onDbClickPlan}>{plan}</InlineBox>
       </Tooltip>
     )
   }
@@ -224,7 +244,7 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
   }
 
   return (
-    <Box>
+    <Box >
       <List>
         <ListItemText
           sx={{ marginTop: 3 }}
@@ -233,15 +253,14 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
               durationHour={durationHour}
               category={category}
               plan={plan}
-            />
-          }
+            />}
         />
-        <Box sx={{ marginTop: 3 }}>
+        <Box sx={{ mt: 3, mb:3 }}>
           {subTodoList.map((subTodo) => 
             ( <SubTodo subTodo={subTodo} todo={todo} key={subTodo.id}/> )  
       )}
 
-    </Box>
+        </Box>
       </List>
       <Divider component="li" />
     </Box>

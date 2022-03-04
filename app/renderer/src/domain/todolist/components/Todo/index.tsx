@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Box, List, Stack } from '@mui/material'
+import { Box, List, Stack,Button } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
 import { defaultTodoList, defaultNewTodo } from '../../constants'
@@ -33,6 +33,9 @@ export default function TodoIndex(): JSX.Element {
 const AddTodoButtonWrapper = styled(Box)({
   position: 'sticky',
   top: 0,
+  heigth:1000,
+  paddingTop:0,
+  backgroundColor:'white',
   display: 'flex',
   flexFlow: 'row wrap',
   justifyContent: 'space-around',
