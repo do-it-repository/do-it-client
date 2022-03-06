@@ -10,11 +10,6 @@ export const defaultNewTodo: TodoType = {
   },
   durationHour: 0,
   subTodoList: [
-    {
-      id: 1,
-      plan: '',
-      isDone: false,
-      },
   ],
 }
 

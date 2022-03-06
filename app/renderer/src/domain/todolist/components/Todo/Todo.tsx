@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Box } from '@mui/material'
-import { IconButton, List, ListItemText, Divider, TextField ,Tooltip, Checkbox } from '@mui/material'
+import { Button,IconButton, List, ListItemText, Divider, TextField ,Tooltip, Checkbox } from '@mui/material'
 import Badge, { BadgeProps } from '@mui/material/Badge'
 import NativeSelect from '@mui/material/NativeSelect'
 import { styled } from '@mui/material'
@@ -161,7 +161,7 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
       setModTodo({...modTodo, plan:e.target.value })
     }
 
-    const onEnterUpdate = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const onKeyEnterUpdate = (e: React.KeyboardEvent<HTMLInputElement>) => {
       if (e.key === 'Enter') {
         setTodoList(
           todoList.map(currTodo =>
@@ -170,7 +170,11 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
         }
       }
 
-    const onDbClickPlan = (e:React.MouseEvent<HTMLInputElement>) => {
+      const onMouseEnterPlan = (e: React.MouseEvent<HTMLInputElement>) => {
+        
+      }
+
+    const onClickPlan = (e:React.MouseEvent<HTMLElement>) => {
       setIsActive(!isActive)
     }
 
@@ -196,12 +200,14 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
     
     if (isActive === true) {
       return(
-      <TextField onKeyDown={onEnterUpdate} onChange={onChange} variant="standard" ref={wrapperRef} size='small' autoFocus={true} value={newPlan} placeholder={plan}/>
+      <TextField sx={{mt:1}} onKeyDown={onKeyEnterUpdate} onChange={onChange} spellCheck={false} variant="standard" ref={wrapperRef} size='small' autoFocus={true} value={newPlan} placeholder={plan}/>
       )}
 
     return (
-      <Tooltip title='수정을 위해 더블클릭' enterDelay={1000}>
-      <InlineBox onDoubleClick={onDbClickPlan}>{plan}</InlineBox>
+      <Tooltip title='수정을 위해 클릭' enterDelay={1000}>
+      <Button
+      onClick={onClickPlan}
+       sx={{ padding:0, color:'black',fontSize:15,fontWeight:'bold', borderRadius:0.1}}>{plan}</Button>
       </Tooltip>
     )
   }
