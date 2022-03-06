@@ -26,7 +26,7 @@ const InputMode = ({ innerRef }: InputModeParam) => {
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewPlan(e.target.value)
-    setNewTodo({ ...newTodo, plan: e.target.value })
+    setNewTodo({ ...newTodo, plan: e.target.value})
   }
 
   const onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -39,6 +39,7 @@ const InputMode = ({ innerRef }: InputModeParam) => {
 
   return (
     <InputModeTextField
+      spellCheck={false}
       onKeyDown={onEnter}
       onChange={onChange}
       value={newPlan}

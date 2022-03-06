@@ -4,7 +4,10 @@ import { Button,IconButton, List, ListItemText, Divider, TextField ,Tooltip, Che
 import Badge, { BadgeProps } from '@mui/material/Badge'
 import NativeSelect from '@mui/material/NativeSelect'
 import { styled } from '@mui/material'
-import AddIcon from '@mui/icons-material/Add';
+import Zoom from '@mui/material/Zoom';
+
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 import { useRecoilState } from 'recoil'
 import { todoListState,newPlanState, newTodoState } from '../../../../common/atom/state'
@@ -170,10 +173,6 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
         }
       }
 
-      const onMouseEnterPlan = (e: React.MouseEvent<HTMLInputElement>) => {
-        
-      }
-
     const onClickPlan = (e:React.MouseEvent<HTMLElement>) => {
       setIsActive(!isActive)
     }
@@ -198,16 +197,25 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
 
     clickOutside(setIsActive,wrapperRef)
     
+
     if (isActive === true) {
       return(
-      <TextField sx={{mt:1}} onKeyDown={onKeyEnterUpdate} onChange={onChange} spellCheck={false} variant="standard" ref={wrapperRef} size='small' autoFocus={true} value={newPlan} placeholder={plan}/>
+      <InlineBox>
+        <TextField sx={{mt:1,mr:1, width:150}} onKeyDown={onKeyEnterUpdate} onChange={onChange} spellCheck={false} variant="standard" ref={wrapperRef} size='small' autoFocus={true} value={newPlan} placeholder={plan}/>
+        <IconButton sx={{padding:0.3}} size="medium">
+          <AddCircleIcon fontSize='inherit'/>
+        </IconButton>
+        <IconButton sx={{padding:0.3}} size="medium">
+          <DeleteIcon fontSize='inherit'/>
+        </IconButton>
+      </InlineBox>
       )}
 
     return (
       <Tooltip title='수정을 위해 클릭' enterDelay={1000}>
-      <Button
-      onClick={onClickPlan}
-       sx={{ padding:0, color:'black',fontSize:15,fontWeight:'bold', borderRadius:0.1}}>{plan}</Button>
+      <Button 
+      onClick={onClickPlan} sx={{ padding:0, color:'black',fontSize:15,fontWeight:'bold', borderRadius:0.1}}>{plan}
+       </Button>
       </Tooltip>
     )
   }
