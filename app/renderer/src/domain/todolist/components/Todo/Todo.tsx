@@ -9,9 +9,11 @@ import Zoom from '@mui/material/Zoom';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
+import {InlineBox} from '../../../../common/components/StyledMui'
+
 import { useRecoilState } from 'recoil'
 import { todoListState,newPlanState, newTodoState } from '../../../../common/atom/state'
-import BasicSpeedDial from '../../../../common/components/BasicSpeedDial'
+
 
 import TodoType, { SubTodoType,TodoPropType, PrimaryPropType, SubTodoPropType } from '../../types'
 import { fontWeight } from '@mui/system'
@@ -134,27 +136,15 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
               <InlineBox>{`${category.emoji}`}</InlineBox>
             </InlineBox>
               }
-        
       </InlineBox>
       )
-    
-    
-    // return (
-    //   <InlineBox sx={{ml:1}} onClick={onClickCat}>
-    //     <InlineBox sx={{ fontWeight: 'bold' }}>
-    //     {`${category.name}`}
-    //     </InlineBox>
-    //     <InlineBox>{`${category.emoji}`}</InlineBox>
-    //   </InlineBox>
-    // )
-  }
+    }
 
   
   const MainPlan = ():JSX.Element => {
     const [newPlan,setNewPlan] = useState<string>(plan)
     const [modTodo,setModTodo] = useState<TodoType>(todo)
     const [todoList,setTodoList] = useRecoilState(todoListState)
-
     const [isActive,setIsActive] = useState<boolean>(false)
     const wrapperRef = useRef(null)
 
@@ -292,7 +282,3 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
     },
     cursor: 'pointer'
   }))
-  
-  const InlineBox = styled(Box)({
-    display: 'inline',
-  })  

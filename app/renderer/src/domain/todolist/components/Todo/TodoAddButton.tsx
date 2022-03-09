@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Box, IconButton, TextField } from '@mui/material'
-import AddIcon from '@mui/icons-material/Add'
 import AddTaskIcon from '@mui/icons-material/AddTask';
 import TodoType, { SubTodoType } from '../../types'
 import { styled } from '@mui/material/styles'
+import { InlineBox } from '../../../../common/components/StyledMui';
 
 import { useRecoilState } from 'recoil'
 
@@ -78,6 +78,8 @@ function clickOutside(
   }, [ref])
 }
 
+
+
 export default function TodoAddButton({}: TodoAddButtonParam): JSX.Element {
   const [inputMode, setInputMode] = useState<boolean>(false)
   const wrapperRef = useRef(null)
@@ -87,10 +89,13 @@ export default function TodoAddButton({}: TodoAddButtonParam): JSX.Element {
 
   clickOutside(setInputMode, wrapperRef)
 
-  if (inputMode === true) {
-    return <InputMode innerRef={wrapperRef} />
-  }
-  return <ButtonMode onClick={onClick} />
+    return (
+      <InlineBox>
+      { inputMode === true && <InputMode innerRef={wrapperRef} /> }
+      { inputMode === false && <ButtonMode onClick={onClick} /> }
+      </InlineBox>
+  )
+
 }
 
 const InputModeTextField = styled(TextField)({
