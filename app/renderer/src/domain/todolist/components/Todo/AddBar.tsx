@@ -1,23 +1,24 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Box, IconButton, TextField } from '@mui/material'
 import AddTaskIcon from '@mui/icons-material/AddTask';
-import TodoType, { SubTodoType } from '../../types'
+import TodoType from '../../types'
 import { styled } from '@mui/material/styles'
 import { InlineBox } from '../../../../common/components/StyledMui';
 
 import { useRecoilState } from 'recoil'
 
 import {
-  InputModeParam,
-  ButtonModeParam,
-  TodoAddButtonParam,
-} from '../../types'
-
-import {
   newPlanState,
   newTodoState,
   todoListState,
 } from '../../../../common/atom/state'
+
+export interface InputModeParam {
+  innerRef: any
+}
+export interface ButtonModeParam {
+  onClick: (e: React.MouseEvent<HTMLInputElement>) => void
+}
 
 const InputMode = ({ innerRef }: InputModeParam) => {
   const [newPlan, setNewPlan] = useRecoilState<string>(newPlanState)
@@ -80,7 +81,7 @@ function clickOutside(
 
 
 
-export default function TodoAddButton({}: TodoAddButtonParam): JSX.Element {
+export default function AddBar({}): JSX.Element {
   const [inputMode, setInputMode] = useState<boolean>(false)
   const wrapperRef = useRef(null)
   const onClick = (e: React.MouseEvent<HTMLInputElement>) => {

@@ -5,7 +5,7 @@ import { styled } from '@mui/material/styles'
 import TodoType from '../../types'
 
 import Todo from './Todo'
-import TodoAddButton from './TodoAddButton'
+import AddBar from './AddBar'
 
 import { todoListState } from '../../../../common/atom/state'
 import { useRecoilValue } from 'recoil'
@@ -15,9 +15,9 @@ export default function TodoIndex(): JSX.Element {
 
   return (
     <Box>
-      <AddTodoButtonWrapper >
-        <TodoAddButton />
-      </AddTodoButtonWrapper>
+      <AddBarWrapper >
+        <AddBar />
+      </AddBarWrapper>
       <List sx={{ml:1}}>
         <Stack spacing={1}>
           {todoList.map((todo) => (
@@ -29,7 +29,7 @@ export default function TodoIndex(): JSX.Element {
   )
 }
 
-const AddTodoButtonWrapper = styled(Box)({
+const AddBarWrapper = styled(Box)({
   zIndex:2,
   position: 'sticky',
   top: 0,

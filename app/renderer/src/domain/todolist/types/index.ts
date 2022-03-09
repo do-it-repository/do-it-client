@@ -50,4 +50,3 @@ export interface ButtonModeParam {
   onClick: (e: React.MouseEvent<HTMLInputElement>) => void
 }
 
-export interface TodoAddButtonParam {}

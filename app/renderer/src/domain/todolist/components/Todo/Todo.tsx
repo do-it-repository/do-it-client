@@ -44,7 +44,6 @@ const SubTodo = ({subTodo, todo}: any) => {
           else {return (currTodo)}
         }
           ))
-        console.log(isDoneTodo)
       }
       // subTodo isDoneList 모두 false인 경우 isDoneMain false로 전환
       else if ( isDoneTodo.SubList.every(isFalse) === true) {
@@ -212,9 +211,7 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
   }
   
   const Primary = ({
-    durationHour,
-    category,
-    plan, 
+    durationHour
   }: PrimaryPropType): JSX.Element => {
     
     const [todoList,setTodoList] = useRecoilState(todoListState)
@@ -268,8 +265,8 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
         </Box>
       </List>
       <Divider component="li" />
-    </Box>
-  )}
+    </Box>)
+}
 
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
     '& .MuiBadge-badge': {
