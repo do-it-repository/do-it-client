@@ -79,8 +79,6 @@ function clickOutside(
   }, [ref])
 }
 
-
-
 export default function AddBar({}): JSX.Element {
   const [inputMode, setInputMode] = useState<boolean>(false)
   const wrapperRef = useRef(null)
@@ -96,7 +94,6 @@ export default function AddBar({}): JSX.Element {
       { inputMode === false && <ButtonMode onClick={onClick} /> }
       </InlineBox>
   )
-
 }
 
 const InputModeTextField = styled(TextField)({

@@ -13,9 +13,9 @@ import TodoIndex from '../components/Todo'
 export default function TodoPlanner() {
   return (
     <WallPaper>
-      <WidgetTodoList>
+      <TodoWidget>
         <TodoIndex />
-      </WidgetTodoList>
+      </TodoWidget>
     </WallPaper>
   )
 }
@@ -55,11 +55,11 @@ const WallPaper = styled('div')({
   },
 })
 
-const WidgetTodoList = styled('div')(({ theme }) => ({
+const TodoWidget = styled('div')(({ theme }) => ({
   padding: 0,
   borderRadius: 40,
   width: 650,
-  height: 650,
+  height: 850,
   maxWidth: '100%',
   position: 'relative',
   overflow: 'auto',

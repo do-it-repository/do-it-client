@@ -11,14 +11,15 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import {InlineBox} from '../../../../common/components/StyledMui'
 
 import { useRecoilState } from 'recoil'
-import { todoListState,newPlanState, newTodoState } from '../../../../common/atom/state'
+import { todoListState } from '../../../../common/atom/state'
 
 
-import TodoType, { SubTodoType,TodoPropType, PrimaryPropType, SubTodoPropType } from '../../types'
+import TodoType, { SubTodoType,TodoPropType, PrimaryPropType, } from '../../types'
 
 const SubTodo = ({subTodo, todo}: any) => {
   const {plan, isDone, id} = subTodo
   const [todoList,setTodoList] = useRecoilState(todoListState)
+  const [isCheckedSub, setIsCheckedSub] = useState(false)
 
   useEffect(()=> {
     const isDoneTodoList = todoList.map(currTodo=> 
@@ -36,9 +37,11 @@ const SubTodo = ({subTodo, todo}: any) => {
     const isTrue = (currentValue: boolean) => currentValue === true
     const isFalse = (currentValue: boolean) => currentValue === true
     for (var isDoneTodo of isDoneTodoList) {
+    // subTodo isDoneList 모두 true인 경우 isDoneMain true로 전환
       if ( isDoneTodo.SubList.every(isTrue) === true) {
         setTodoList(todoList.map(currTodo => {
           if (currTodo.id === isDoneTodo.mainId) {
+            
             return {...currTodo,isDoneMain:true}
           }
           else {return (currTodo)}
@@ -59,6 +62,7 @@ const SubTodo = ({subTodo, todo}: any) => {
   },[isDone])
 
    const onCheckedIsDone = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsCheckedSub(!isCheckedSub)
     setTodoList(
       todoList.map(currTodo => {
         if (currTodo.id === todo.id){
@@ -80,7 +84,12 @@ const SubTodo = ({subTodo, todo}: any) => {
           return (
             <Box >
               <Checkbox color='secondary' checked={isDone} onChange={onCheckedIsDone} />
+              { isCheckedSub === true &&
+              <Box sx={{display:'inline', color:'gray'}}>{plan}</Box>
+              }
+              { isCheckedSub === false &&
               <Box sx={{display:'inline'}}>{plan}</Box>
+              }
             </Box>
           )
 }
@@ -138,7 +147,7 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
     }
 
   
-  const MainPlan = ():JSX.Element => {
+  const MainPlan = ({}):JSX.Element => {
     const [newPlan,setNewPlan] = useState<string>(plan)
     const [modTodo,setModTodo] = useState<TodoType>(todo)
     const [todoList,setTodoList] = useRecoilState(todoListState)
@@ -218,9 +227,10 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
 
     const onCheckedMain = (e: React.ChangeEvent<HTMLInputElement>) => {
       setTodoList(
+        //Main Checkbox를 체크 시, 해당 플랜 하위의 모든 subCheckBox 체크처리
         todoList.map(currTodo => {
           if (currTodo.id === todo.id) {
-            if (currTodo.isDoneMain === true) { 
+            if (currTodo.isDoneMain === true) {
               const newSTDL = currTodo.subTodoList.map(currSubTodo => {return ({...currSubTodo,isDone:false})})
               return ({...currTodo,isDoneMain:false,subTodoList:newSTDL})}
             else { 
@@ -254,14 +264,11 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
             <Primary
               durationHour={durationHour}
               category={category}
-              plan={plan}
-            />}
-        />
+              plan={plan}/>}
+            />
         <Box sx={{ mt: 3, mb:3 }}>
           {subTodoList.map((subTodo) => 
-            ( <SubTodo subTodo={subTodo} todo={todo} key={subTodo.id}/> )  
-      )}
-
+            ( <SubTodo subTodo={subTodo} todo={todo} key={subTodo.id}/> ) )}
         </Box>
       </List>
       <Divider component="li" />
