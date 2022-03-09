@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import { Box, List, Stack,Button } from '@mui/material'
+import { Box, List, Stack } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-import { defaultTodoList, defaultNewTodo } from '../../constants'
 import TodoType from '../../types'
 
 import Todo from './Todo'

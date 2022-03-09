@@ -4,7 +4,6 @@ import { Button,IconButton, List, ListItemText, Divider, TextField ,Tooltip, Che
 import Badge, { BadgeProps } from '@mui/material/Badge'
 import NativeSelect from '@mui/material/NativeSelect'
 import {styled} from '@mui/material'
-import Zoom from '@mui/material/Zoom';
 
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
@@ -16,7 +15,6 @@ import { todoListState,newPlanState, newTodoState } from '../../../../common/ato
 
 
 import TodoType, { SubTodoType,TodoPropType, PrimaryPropType, SubTodoPropType } from '../../types'
-import { fontWeight } from '@mui/system'
 
 const SubTodo = ({subTodo, todo}: any) => {
   const {plan, isDone, id} = subTodo
@@ -186,30 +184,30 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
 
     clickOutside(setIsActive,wrapperRef)
     
-
-    if (isActive === true) {
-      return(
+    return(
       <InlineBox>
-        <TextField sx={{mt:1,mr:1, width:150}} onKeyDown={onKeyEnterUpdate} onChange={onChange} spellCheck={false} variant="standard" ref={wrapperRef} size='small' autoFocus={true} value={newPlan} placeholder={plan}/>
-        <Tooltip title='서브플랜 추가' enterDelay={300}>
-        <IconButton sx={{padding:0.3}} size="medium">
-          <AddCircleIcon fontSize='inherit'/>
-        </IconButton>
-        </Tooltip>
-        <Tooltip title='메인플랜 제거' enterDelay={300}>
-        <IconButton sx={{padding:0.3}} size="medium">
-          <DeleteIcon fontSize='inherit'/>
-        </IconButton>
-        </Tooltip>
+        { isActive === true &&
+        <InlineBox>
+          <TextField sx={{mt:1,mr:1, width:150}} onKeyDown={onKeyEnterUpdate} onChange={onChange} spellCheck={false} variant="standard" ref={wrapperRef} size='small' autoFocus={true} value={newPlan} placeholder={plan}/>
+          <Tooltip title='서브플랜 추가' enterDelay={300}>
+            <IconButton sx={{padding:0.3}} size="medium">
+              <AddCircleIcon fontSize='inherit'/>
+            </IconButton>
+          </Tooltip>
+          <Tooltip title='메인플랜 제거' enterDelay={300}>
+            <IconButton sx={{padding:0.3}} size="medium">
+              <DeleteIcon fontSize='inherit'/>
+            </IconButton>
+          </Tooltip>
+        </InlineBox>
+        }
+        { isActive === false &&
+          <Tooltip title='수정을 위해 클릭' enterDelay={1000}>
+            <Button onClick={onClickPlan} sx={{ padding:0, color:'black',fontSize:15,fontWeight:'bold', borderRadius:0.1}}>{plan}
+            </Button>
+          </Tooltip>
+        }
       </InlineBox>
-      )}
-
-    return (
-      <Tooltip title='수정을 위해 클릭' enterDelay={1000}>
-      <Button 
-      onClick={onClickPlan} sx={{ padding:0, color:'black',fontSize:15,fontWeight:'bold', borderRadius:0.1}}>{plan}
-       </Button>
-      </Tooltip>
     )
   }
   
