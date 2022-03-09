@@ -3,7 +3,7 @@ import { Box } from '@mui/material'
 import { Button,IconButton, List, ListItemText, Divider, TextField ,Tooltip, Checkbox } from '@mui/material'
 import Badge, { BadgeProps } from '@mui/material/Badge'
 import NativeSelect from '@mui/material/NativeSelect'
-import { styled } from '@mui/material'
+import {styled} from '@mui/material'
 import Zoom from '@mui/material/Zoom';
 
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -20,15 +20,16 @@ const SubTodo = ({subTodo, todo}: any) => {
   const {plan, isDone, id} = subTodo
   const [todoList,setTodoList] = useRecoilState(todoListState)
 
-
-  // checkBox isDoneMain <-> isDoneSub 
   useEffect(()=> {
     const isDoneTodoList = todoList.map(currTodo=> 
-      {
-      var objMain = {mainId: currTodo.id ,mainDone: currTodo.isDoneMain, SubList: currTodo.subTodoList.map(currSubTodo => {
-        var objSub = currSubTodo.isDone
-      return objSub}
-      )}
+        {
+        var objMain = {
+          mainId: currTodo.id, 
+          mainDone: currTodo.isDoneMain, 
+          SubList: currTodo.subTodoList.map(currSubTodo => {
+          var objSub = currSubTodo.isDone
+        return objSub}
+        )}
       return objMain
     })
 
@@ -54,16 +55,6 @@ const SubTodo = ({subTodo, todo}: any) => {
           else { return (currTodo)}
         }))
       }
-// subTodo isdoneList 중 하나라도 true가 아닐경우 isDoneMain false로 전환 : 오류
-/*       else if ( isDoneTodo.SubList.every(isTrue) === false ) {
-        setTodoList( 
-          todoList.map(currTodo => {
-            if (currTodo.id===isDoneTodo.mainId) {
-              return ({...currTodo,isDoneMain:false})}
-            else { return (currTodo)}
-          })
-        )
-      } */
     }
 
   },[isDone])
@@ -91,7 +82,6 @@ const SubTodo = ({subTodo, todo}: any) => {
             <Box >
               <Checkbox color='secondary' checked={isDone} onChange={onCheckedIsDone} />
               <Box sx={{display:'inline'}}>{plan}</Box>
-              
             </Box>
           )
 }
@@ -127,27 +117,36 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
 
     clickOutside(setIsActive,wrapperRef)
 
-    if (isActive === true) {
-      return (
-        <InlineBox sx={{ml:1}} ref={wrapperRef}>
-            <NativeSelect
-              defaultValue={`${category.name}`}
-              
-              >
+    return (
+      <InlineBox sx={{ml:1}} >
+          {
+          isActive === true &&
+          <InlineBox ref={wrapperRef}>
+            <NativeSelect defaultValue={`${category.name}`}>
                  <option value={`${category.name}`}>{`${category.name}${category.emoji}`}</option>
             </NativeSelect>
-        </InlineBox>
-      )
-    }
-    
-    return (
-      <InlineBox sx={{ml:1}} onClick={onClickCat}>
-        <InlineBox sx={{ fontWeight: 'bold' }}>
-        {`${category.name}`}
-        </InlineBox>
-        <InlineBox>{`${category.emoji}`}</InlineBox>
+          </InlineBox>
+          }
+          {
+          isActive === false &&
+            <InlineBox onClick={onClickCat}>    
+              <InlineBox sx={{ fontWeight: 'bold' }}>{`${category.name}`}</InlineBox>
+              <InlineBox>{`${category.emoji}`}</InlineBox>
+            </InlineBox>
+              }
+        
       </InlineBox>
-    )
+      )
+    
+    
+    // return (
+    //   <InlineBox sx={{ml:1}} onClick={onClickCat}>
+    //     <InlineBox sx={{ fontWeight: 'bold' }}>
+    //     {`${category.name}`}
+    //     </InlineBox>
+    //     <InlineBox>{`${category.emoji}`}</InlineBox>
+    //   </InlineBox>
+    // )
   }
 
   
@@ -202,12 +201,16 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
       return(
       <InlineBox>
         <TextField sx={{mt:1,mr:1, width:150}} onKeyDown={onKeyEnterUpdate} onChange={onChange} spellCheck={false} variant="standard" ref={wrapperRef} size='small' autoFocus={true} value={newPlan} placeholder={plan}/>
+        <Tooltip title='서브플랜 추가' enterDelay={300}>
         <IconButton sx={{padding:0.3}} size="medium">
           <AddCircleIcon fontSize='inherit'/>
         </IconButton>
+        </Tooltip>
+        <Tooltip title='메인플랜 제거' enterDelay={300}>
         <IconButton sx={{padding:0.3}} size="medium">
           <DeleteIcon fontSize='inherit'/>
         </IconButton>
+        </Tooltip>
       </InlineBox>
       )}
 
@@ -278,19 +281,18 @@ export default function Todo({ todo }: TodoPropType): JSX.Element {
       </List>
       <Divider component="li" />
     </Box>
-  )
-}
+  )}
 
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
-  '& .MuiBadge-badge': {
-    right: -30,
-    top: 10,
-    border: `2px solid ${theme.palette.background.paper}`,
-    padding: '0 4px',
-  },
-  cursor: 'pointer'
-}))
-
-const InlineBox = styled(Box)({
-  display: 'inline',
-})
+    '& .MuiBadge-badge': {
+      right: -30,
+      top: 10,
+      border: `2px solid ${theme.palette.background.paper}`,
+      padding: '0 4px',
+    },
+    cursor: 'pointer'
+  }))
+  
+  const InlineBox = styled(Box)({
+    display: 'inline',
+  })  
